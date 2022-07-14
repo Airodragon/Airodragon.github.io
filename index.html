@@ -71,6 +71,24 @@
             background: transparent;
         }
 
+        .github-project-icon i {
+            color: #494f61;
+            font-size: 2.5em;
+            float: right;
+            transition: 0.2s ease-in-out;
+            padding: 0.2em 0px;
+        }
+
+        .github-project-icon i:hover {
+            cursor: pointer;
+            transform: translate(0, -2px);
+            color: #64ffda;
+            /* border-radius: 50%; */
+
+        }
+        .deactive{
+            display: none;
+        }
     </style>
 
 
@@ -79,6 +97,11 @@
 
 
 <body>
+    <noscript>
+        <div class="alert alert-danger" role="alert">
+            Please enable JavaScript to use this website properly.
+        </div>
+    </noscript>
 
 
     <!-- NAVBAR AREA -->
@@ -111,11 +134,11 @@
                 <ul class="d-flex" style="align-items: center;">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item my-0 my-sm-2 my-md-2 my-lg-0">
-                            <a class="nav-link mx-1" aria-current="page" href="#about-differencer">01.
+                            <a class="nav-link mx-1" aria-current="page" href="#about">01.
                                 <span>About</span></a>
                         </li>
                         <li class="nav-item my-sm-2 my-md-2 my-lg-0">
-                            <a class="nav-link mx-1" href="#experience-differencer">02. <span>Experience</span></a>
+                            <a class="nav-link mx-1" href="#experience">02. <span>Experience</span></a>
                         </li>
                         <li class="nav-item my-sm-2 my-md-2 my-lg-0">
                             <a class="nav-link mx-1" href="#">03. <span>Work</span> </a>
@@ -141,9 +164,6 @@
             <div class="line"></div>
         </div>
 
-
-
-
         <div class="container middle">
             <div class="hero-section">
                 <p>Hi, my name is</p>
@@ -158,19 +178,14 @@
                     on new technology and
                     understand industrial work.
                 </p>
-                <button class="text-center">
+                <button class="text-center resume">
                     Check out my Resume!
                 </button>
             </div>
 
 
-
-            <div class="differencer" style="height: 2em;" id="about-differencer">
-            </div>
-
-
             <div class="about-section" id="about" style="height:max-content">
-                <div class="about-heading mx-0 mx-md-5 mx-lg-5 px-sm-0">
+                <div class="about-heading mx-0 px-sm-0">
                     <span class="neon-color">01. </span>
                     <span class="grey-color"> About</span>
                     <div class="grey-line-cont">
@@ -223,99 +238,427 @@
                 </div>
             </div>
 
-
-            <div class="differencer" style="height: 40em;display:block;width: 100%;" id="experience-differencer">
-            </div>
-
-            <div class="experience container d-block mt-5" style="padding-bottom: 200px;">
-                    <div class="about-heading mx-0 mx-md-5 mx-lg-5 px-sm-0">
-                        <span class="neon-color">02. </span>
-                        <span class="grey-color"> Experience</span>
-                        <div class="grey-line-cont">
-                            <span class="grey-line"></span>
-                        </div>
+            <div class="experience container d-block mt-5" id="experience" style="padding-bottom: 100px;">
+                <div class="about-heading mx-0 px-sm-0">
+                    <span class="neon-color">02. </span>
+                    <span class="grey-color"> Experience</span>
+                    <div class="grey-line-cont">
+                        <span class="grey-line"></span>
                     </div>
-                    <div class="container">
-                        <div class="row mt-5 mx-auto w-75" style="border: 0.01em solid #64ffda;border-radius: 0.5rem;box-shadow: 0px 0px 35px #64ffda;">
-                            <div class=" col-12 col-sm-4 col-md-4 col-lg-4">
-                                <div class="list-group expierence-list" id="list-tab" role="tablist">
-                                    <a class="list-group-item list-group-item-action active" id="list-home-list"
-                                        data-bs-toggle="list" href="#list-home" role="tab"
-                                        aria-controls="list-home">Tanrik Media</a>
-                                    <a class="list-group-item list-group-item-action" id="list-profile-list"
-                                        data-bs-toggle="list" href="#list-profile" role="tab"
-                                        aria-controls="list-profile">Pepcoding</a>
-                                    <a class="list-group-item list-group-item-action" id="list-messages-list"
-                                        data-bs-toggle="list" href="#list-messages" role="tab"
-                                        aria-controls="list-messages">CodeKaroYaaro</a>
-                                    <a class="list-group-item list-group-item-action" id="list-settings-list"
-                                        data-bs-toggle="list" href="#list-settings" role="tab"
-                                        aria-controls="list-settings">IGNIAD</a>
-                                </div>
+                </div>
+                <div class="container1">
+                    <div class="row mt-5 mx-auto"
+                        style="border: 0.01em solid #64ffda;border-radius: 0.5rem;box-shadow: 0px 0px 35px #64ffda;">
+                        <script>
+                            let item = document.querySelector('.container1 > .row');
+                            window.addEventListener('resize', function () {
+                                if (window.innerWidth > 768) {
+                                    item.classList.add('w-75')
+                                    item.classList.remove('w-100')
+                                } else {
+                                    item.classList.remove('w-75')
+                                    item.classList.add('w-100')
+                                }
+                            });
+                        </script>
+                        <div class=" col-12 col-sm-4 col-md-4 col-lg-4">
+                            <div class="list-group expierence-list" id="list-tab" role="tablist">
+                                <a class="list-group-item list-group-item-action active" id="list-home-list"
+                                    data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">Tanrik
+                                    Media</a>
+                                <a class="list-group-item list-group-item-action" id="list-profile-list"
+                                    data-bs-toggle="list" href="#list-profile" role="tab"
+                                    aria-controls="list-profile">Pepcoding</a>
+                                <a class="list-group-item list-group-item-action" id="list-messages-list"
+                                    data-bs-toggle="list" href="#list-messages" role="tab"
+                                    aria-controls="list-messages">CodeKaroYaaro</a>
+                                <a class="list-group-item list-group-item-action" id="list-settings-list"
+                                    data-bs-toggle="list" href="#list-settings" role="tab"
+                                    aria-controls="list-settings">IGNIAD</a>
                             </div>
-                            <div class=" col-12 col-sm-8 col-md-8 col-lg-8 px-0 px-sm-2 px-lg-5 px-md-5">
-                                <div class="tab-content" id="nav-tabContent">
-                                    <div class="tab-pane fade show active" id="list-home" role="tabpanel"
-                                        aria-labelledby="list-home-list">
-                                       <h4 class="title mt-3">Frontend Developer<span> @ Tanrik Media</span></h4>
-                                       <p>Jul,2022 - Present </p>
-                                       <p></p>
-                                       <ul class="skills">
+                        </div>
+                        <div class=" col-12 col-sm-8 col-md-8 col-lg-8 px-0 px-sm-2 px-lg-5 px-md-5">
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="list-home" role="tabpanel"
+                                    aria-labelledby="list-home-list">
+                                    <h4 class="title mt-3">Frontend Developer<span> @ Tanrik Media</span></h4>
+                                    <p>Jul,2022 - Present </p>
+                                    <p></p>
+                                    <ul class="skills">
                                         <li>Bootstrap</li>
                                         <li>Web Development</li>
                                         <li>Shopify</li>
                                         <!-- <li></li> -->
-                                       </ul>
+                                    </ul>
 
-                                    </div>
-                                    <div class="tab-pane fade" id="list-profile" role="tabpanel"
-                                        aria-labelledby="list-profile-list">
-                                        <h4 class="title mt-3">Product Engineer Intern<span> @ Pepcoding</span></h4>
-                                       <p>Dec,2021 - Present </p>
-                                       <ul class="skills">
+                                </div>
+                                <div class="tab-pane fade" id="list-profile" role="tabpanel"
+                                    aria-labelledby="list-profile-list">
+                                    <h4 class="title mt-3">Product Engineer Intern<span> @ Pepcoding</span></h4>
+                                    <p>Dec,2021 - Present </p>
+                                    <ul class="skills">
                                         <li>DSA</li>
                                         <li>Web Development</li>
                                         <li>DOM</li>
                                         <!-- <li></li> -->
-                                       </ul>
+                                    </ul>
 
-                                    </div>
-                                    <div class="tab-pane fade" id="list-messages" role="tabpanel"
-                                        aria-labelledby="list-messages-list">
-                                        <h4 class="title mt-3">Instructor<span> @ CodeKaroYaaro</span></h4>
-                                       <p>Jun,2021 - Oct,2021 </p>
-                                       <ul class="skills">
+                                </div>
+                                <div class="tab-pane fade" id="list-messages" role="tabpanel"
+                                    aria-labelledby="list-messages-list">
+                                    <h4 class="title mt-3">Instructor<span> @ CodeKaroYaaro</span></h4>
+                                    <p>Jun,2021 - Oct,2021 </p>
+                                    <ul class="skills">
                                         <li>Web Development</li>
                                         <li>Python</li>
                                         <li>Management</li>
                                         <!-- <li></li> -->
-                                       </ul>
+                                    </ul>
 
-                                    </div>
-                                    <div class="tab-pane fade" id="list-settings" role="tabpanel"
-                                        aria-labelledby="list-settings-list">
-                                        <h4 class="title mt-3">Frontend Developer<span> @ IGNIAD</span></h4>
-                                       <p>Dec,2020 - Feb,2021 </p>
-                                       <ul class="skills">
+                                </div>
+                                <div class="tab-pane fade" id="list-settings" role="tabpanel"
+                                    aria-labelledby="list-settings-list">
+                                    <h4 class="title mt-3">Frontend Developer<span> @ IGNIAD</span></h4>
+                                    <p>Dec,2020 - Feb,2021 </p>
+                                    <ul class="skills">
                                         <li>Shopify Liquid</li>
                                         <li>Web Development</li>
                                         <li>UI/UX</li>
                                         <!-- <li></li> -->
-                                       </ul>
+                                    </ul>
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
 
 
-            
-            
+            <div class="projects container d-block mt-3" id="projects" style="padding-bottom: 100px;">
+                <div class="about-heading mx-0 mx-md-5 mx-lg-5 px-sm-0">
+                    <span class="neon-color">03. </span>
+                    <span class="grey-color"> Projects</span>
+                    <div class="grey-line-cont">
+                        <span class="grey-line"></span>
+                    </div>
+                </div>
+                <div class="row mt-lg-5 mt-md-5 mt-sm-3">
 
 
-            
+
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 my-2 d-flex align-items-stretch">
+                        <div class="card bg-transparent" style="border-color: #494f61;border-width: 2px">
+                            <div class="card-header bg-transparent">
+                                <span class="iconify-inline" data-icon="ant-design:folder-filled"
+                                    style="color: #64ffda;font-size: 3.4em;"></span>
+                                <a href="" class="github-project-icon">
+                                    <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title" style="color: #CCD6F6;">Breast Cancer Detection</h4>
+                                <p class="card-text" style="color: #CCD6F6;font-size: 0.8em;text-align: justify;">
+                                    As a part of a team who are writing a research paper on breast cancer detection, I
+                                    have developed a machine learning python program which detects a patient is having a
+                                    breast cancer or not using different methods like random forest classifier, decision
+                                    tree classifier and Logistic Regression.
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <ul class="skills-card-footer mx-auto"
+                                    style="list-style: none;display: flex;float: left;flex-wrap: wrap;justify-content: space-between;width: 80%;color: #64ffda;">
+                                    <li>Python</li>
+                                    <li>Machine Learning</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 my-2 d-flex align-items-stretch">
+                        <div class="card bg-transparent" style="border-color: #494f61;border-width: 2px">
+                            <div class="card-header bg-transparent">
+                                <span class="iconify-inline" data-icon="ant-design:folder-filled"
+                                    style="color: #64ffda;font-size: 3.4em;"></span>
+                                <a href="" class="github-project-icon">
+                                    <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title" style="color: #CCD6F6;">Twitter Clone</h4>
+                                <p class="card-text" style="color: #CCD6F6;font-size: 0.8em;text-align: justify;">
+                                    As a part of my internship, I developed a Twitter Clone with all the features of a
+                                    twitter clone, like, tweet, retweet, likes, comments, account deletion, account
+                                    change, etc. I have made this website from html and css, and backend was done by
+                                    Python.
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <ul class="skills-card-footer mx-auto"
+                                    style="list-style: none;display: flex;float: left;flex-wrap: wrap;justify-content: space-between;width: 80%;color: #64ffda;">
+                                    <li>Python</li>
+                                    <li>Web Dev</li>
+                                    <li>SQL</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 my-2 d-flex align-items-stretch">
+                        <div class="card bg-transparent" style="border-color: #494f61;border-width: 2px">
+                            <div class="card-header bg-transparent">
+                                <span class="iconify-inline" data-icon="ant-design:folder-filled"
+                                    style="color: #64ffda;font-size: 3.4em;"></span>
+                                <a href="" class="github-project-icon">
+                                    <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title" style="color: #CCD6F6;">Personal Assistant</h4>
+                                <p class="card-text" style="color: #CCD6F6;font-size: 0.8em;text-align: justify;">
+                                    This is my first project in college, it is a basic virtual assistant made with
+                                    Python. It has basic functions like normal voice conversation, basic task. It's name
+                                    is HELEN.
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <ul class="skills-card-footer mx-auto"
+                                    style="list-style: none;display: flex;float: left;flex-wrap: wrap;justify-content: space-between;width: 80%;color: #64ffda;">
+                                    <li>Python</li>
+                                    <li>Speech Recognition</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 my-2 d-flex align-items-stretch">
+                        <div class="card bg-transparent" style="border-color: #494f61;border-width: 2px">
+                            <div class="card-header bg-transparent">
+                                <span class="iconify-inline" data-icon="ant-design:folder-filled"
+                                    style="color: #64ffda;font-size: 3.4em;"></span>
+                                <a href="" class="github-project-icon">
+                                    <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title" style="color: #CCD6F6;">SuperTrend Indicator</h4>
+                                <p class="card-text" style="color: #CCD6F6;font-size: 0.8em;text-align: justify;">
+                                    This is a Supertrend Indicator, it is basically a trend following indicator similar
+                                    to moving averages. It is plotted on price and the current trend can simply be
+                                    determined by its placement vis-a-vis price. It is a very simple indicator and is
+                                    constructed with the help of just two parameters- period and multiplier.
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <ul class="skills-card-footer mx-auto"
+                                    style="list-style: none;display: flex;float: left;flex-wrap: wrap;justify-content: space-between;width: 80%;color: #64ffda;">
+                                    <li>Python</li>
+                                    <li>Machine Learning</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 my-2 d-flex align-items-stretch">
+                        <div class="card bg-transparent" style="border-color: #494f61;border-width: 2px">
+                            <div class="card-header bg-transparent">
+                                <span class="iconify-inline" data-icon="ant-design:folder-filled"
+                                    style="color: #64ffda;font-size: 3.4em;"></span>
+                                <a href="" class="github-project-icon">
+                                    <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title" style="color: #CCD6F6;">Excel Clone</h4>
+                                <p class="card-text" style="color: #CCD6F6;font-size: 0.8em;text-align: justify;">
+                                    I have made a Excel clone having most of the features of the microsoft excel. We can download upload the files also.It has circular path recongition and font change and other fonts setting also.
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <ul class="skills-card-footer mx-auto"
+                                    style="list-style: none;display: flex;float: left;flex-wrap: wrap;justify-content: space-between;width: 80%;color: #64ffda;">
+                                    <li>HTML</li>
+                                    <li>CSS</li>
+                                    <li>DOM</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 my-2 d-flex align-items-stretch">
+                        <div class="card bg-transparent" style="border-color: #494f61;border-width: 2px">
+                            <div class="card-header bg-transparent">
+                                <span class="iconify-inline" data-icon="ant-design:folder-filled"
+                                    style="color: #64ffda;font-size: 3.4em;"></span>
+                                <a href="" class="github-project-icon">
+                                    <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title" style="color: #CCD6F6;">Game Automation</h4>
+                                <p class="card-text" style="color: #CCD6F6;font-size: 0.8em;text-align: justify;">
+                                    I have made a hand recognition system for playing Hill Climbing, it uses mediapipe and cv2. We have basic handsigns for both accelarting and decelerating. 
+                                    We can use this to play other games too like bike stunt games or any other games.
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <ul class="skills-card-footer mx-auto"
+                                    style="list-style: none;display: flex;float: left;flex-wrap: wrap;justify-content: space-between;width: 80%;color: #64ffda;">
+                                    <li>Python</li>
+                                    <li>Machine Learning</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+                <div class="row mt-lg-5 mt-md-5 mt-sm-3 deactive other-pro">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 my-2 d-flex align-items-stretch">
+                        <div class="card bg-transparent" style="border-color: #494f61;border-width: 2px">
+                            <div class="card-header bg-transparent">
+                                <span class="iconify-inline" data-icon="ant-design:folder-filled"
+                                    style="color: #64ffda;font-size: 3.4em;"></span>
+                                <a href="" class="github-project-icon">
+                                    <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title" style="color: #CCD6F6;">Sticky Tickets/Notes</h4>
+                                <p class="card-text" style="color: #CCD6F6;font-size: 0.8em;text-align: justify;">
+                                    I have made a Sticky Ticket manager that use local storage to store tickets and have different priority colors.
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <ul class="skills-card-footer mx-auto"
+                                    style="list-style: none;display: flex;float: left;flex-wrap: wrap;justify-content: space-between;width: 80%;color: #64ffda;">
+                                    <li>HTML</li>
+                                    <li>CSS</li>
+                                    <li>DOM</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 my-2 d-flex align-items-stretch">
+                        <div class="card bg-transparent" style="border-color: #494f61;border-width: 2px">
+                            <div class="card-header bg-transparent">
+                                <span class="iconify-inline" data-icon="ant-design:folder-filled"
+                                    style="color: #64ffda;font-size: 3.4em;"></span>
+                                <a href="" class="github-project-icon">
+                                    <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title" style="color: #CCD6F6;">Calculator</h4>
+                                <p class="card-text" style="color: #CCD6F6;font-size: 0.8em;text-align: justify;">
+                                    I have made a small project with help of JS a simple calculator with my UI.
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <ul class="skills-card-footer mx-auto"
+                                    style="list-style: none;display: flex;float: left;flex-wrap: wrap;justify-content: space-between;width: 80%;color: #64ffda;">
+                                    <li>HTML</li>
+                                    <li>CSS</li>
+                                    <li>JS</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 my-2 d-flex align-items-stretch">
+                        <div class="card bg-transparent" style="border-color: #494f61;border-width: 2px">
+                            <div class="card-header bg-transparent">
+                                <span class="iconify-inline" data-icon="ant-design:folder-filled"
+                                    style="color: #64ffda;font-size: 3.4em;"></span>
+                                <a href="" class="github-project-icon">
+                                    <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title" style="color: #CCD6F6;">Weather App</h4>
+                                <p class="card-text" style="color: #CCD6F6;font-size: 0.8em;text-align: justify;">
+                                   A simple use of weather api with realtime web change and weather forecast. I have used the openweathermap api.
+                                   It is a simple project to get the weather of a city with my UI.
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <ul class="skills-card-footer mx-auto"
+                                    style="list-style: none;display: flex;float: left;flex-wrap: wrap;justify-content: space-between;width: 80%;color: #64ffda;">
+                                    <li>HTML</li>
+                                    <li>CSS</li>
+                                    <li>DOM</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <button style=" background-color: transparent; color: #64ffda;border: 0px;font-size: 3em;" class="mx-auto d-block other-pro-btn">
+                    <i class="fa fa-arrow-circle-down"></i>
+                    <p style="font-size: 0.4em;">Click here for more projects</p>
+                </button>
+
+               
+                <script>
+                    let other_pro = document.querySelector('.other-pro');
+                    let flag = 0;
+                    let other_pro_btn = document.querySelector('.other-pro-btn');
+                    other_pro_btn.addEventListener('click', () => {
+                        if (flag == 0) {
+                            other_pro.classList.remove('deactive');
+                            flag = 1;
+                            other_pro_btn.innerHTML = '<i class="fa fa-arrow-circle-up"></i> <p style="font-size: 0.4em;">Click here for minimise</p> ';
+                        } else {
+                            other_pro.classList.add('deactive');
+                            flag = 0;
+                            other_pro_btn.innerHTML = '<i class="fa fa-arrow-circle-down"></i> <p style="font-size: 0.4em;">Click here for more projects</p>';
+                        }
+                    });
+
+                </script>
+            </div>
+
+
+
+
+
+
         </div>
 
 

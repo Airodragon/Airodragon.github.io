@@ -1,4 +1,6 @@
-let resume = document.querySelector(".resume");
+let resume_all = document.querySelectorAll(".resume");
+resume_all.forEach(resume=>{
 resume.addEventListener('click', (e) => {
-    window.open('./assets/resume.pdf', '_blank');
+    window.open('./assets/docs/mihir_resume.pdf', '_blank');
+})
 })
