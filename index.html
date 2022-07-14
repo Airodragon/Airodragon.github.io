@@ -95,6 +95,9 @@
         .card-footer{
             border: 0px;
         }
+        .other-pro-btn-icon{
+            transition: 0.1s linear;
+        }
     </style>
 
 
@@ -560,7 +563,7 @@
 
 
                 </div>
-                <div class="row mt-lg-5 mt-md-5 mt-sm-3 deactive other-pro">
+                <div class="row deactive other-pro">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-4 my-2 d-flex align-items-stretch">
                         <div class="card bg-transparent" style="border-color: #494f61;border-width: 2px">
                             <div class="card-header bg-transparent">
@@ -642,11 +645,39 @@
                     </div>
 
 
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 my-2 d-flex align-items-stretch">
+                        <div class="card bg-transparent" style="border-color: #494f61;border-width: 2px">
+                            <div class="card-header bg-transparent">
+                                <span class="iconify-inline" data-icon="ant-design:folder-filled"
+                                    style="color: #64ffda;font-size: 3.4em;"></span>
+                                <a href="" class="github-project-icon">
+                                    <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title" style="color: #CCD6F6;">Keyboard Game</h4>
+                                <p class="card-text" style="color: #CCD6F6;font-size: 0.8em;text-align: justify;">
+                                   I have made a simple keyboard game, in which you have to click on the right key.
+                                   It is used for typing test and improve typing skills.
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <ul class="skills-card-footer mx-auto"
+                                    style="list-style: none;display: flex;float: left;flex-wrap: wrap;justify-content: space-between;width: 80%;color: #64ffda;">
+                                    <li>HTML</li>
+                                    <li>CSS</li>
+                                    <li>DOM</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
 
                 <button style=" background-color: transparent; color: #64ffda;border: 0px;font-size: 3em;" class="mx-auto d-block other-pro-btn">
-                    <i class="fa fa-arrow-circle-down"></i>
-                    <p style="font-size: 0.4em;">Click here for more projects</p>
+                    <i class="fa fa-arrow-circle-down other-pro-btn-icon"></i>
+                    <p style="font-size: 0.4em;" class="other-pro-btn-para">Click here for more projects</p>
                 </button>
 
                
@@ -654,15 +685,19 @@
                     let other_pro = document.querySelector('.other-pro');
                     let flag = 0;
                     let other_pro_btn = document.querySelector('.other-pro-btn');
+                    let other_pro_btn_icon = document.querySelector('.other-pro-btn-icon');
+                    let other_pro_btn_para = document.querySelector('.other-pro-btn-para');
                     other_pro_btn.addEventListener('click', () => {
                         if (flag == 0) {
                             other_pro.classList.remove('deactive');
                             flag = 1;
-                            other_pro_btn.innerHTML = '<i class="fa fa-arrow-circle-up"></i> <p style="font-size: 0.4em;">Click here for minimise</p> ';
+                            other_pro_btn_icon.style.transform = 'rotate(180deg)';
+                            other_pro_btn_para.innerText = 'Click here for minimise';
                         } else {
                             other_pro.classList.add('deactive');
                             flag = 0;
-                            other_pro_btn.innerHTML = '<i class="fa fa-arrow-circle-down"></i> <p style="font-size: 0.4em;">Click here for more projects</p>';
+                            other_pro_btn_icon.style.transform = 'rotate(0deg)';
+                            other_pro_btn_para.innerText = 'Click here for more projects';
                         }
                     });
 
