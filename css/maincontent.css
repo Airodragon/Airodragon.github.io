@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+
+.hero-section{
+    padding-top: 20px;
+}
+.hero-section p{
+    color: #64ffda;
+    font-size: 16px;
+    font-weight: 200;
+    padding-top: 50px;
+    padding-left: 20px;
+    font-family:"SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
+    line-height:17.6px;
+    vertical-align:baseline;
+    letter-spacing:1px;
+    word-spacing:1px;
+}
+.hero-section h2{
+    font-family: 'Lato', sans-serif;
+    font-size: 3.5em;
+    padding-left: 15px;
+    font-weight: 700 !important;
+    color: #CCD6F6;
+    letter-spacing: 2px;
+    /* line-height: 1.5em; */
+    /* text-shadow: 0 0 5px #CCD6F6; */
+    text-align: justify;
+}
+.hero-section h3{
+    font-family: 'Lato', sans-serif;
+    font-size: 3em;
+    padding-left: 15px;
+    font-weight: 700 !important;
+    color: #8892B0;
+    letter-spacing: 2px;
+    /* line-height: 1em; */
+    /* text-shadow: 0 0 5px #8892B0; */
+    margin-top: 0.5em;
+    /* text-align: justify; */
+}
+.hero-section .description{
+    font-family: 'sf mono', 'fira code', 'fira mono', 'roboto mono', monospace;
+    width: 60%;
+    text-align: justify;
+    line-height: 1.5em;
+    color: #8892B0;
+    margin-top: -20px;
+}
+@media screen and (max-width: 768px){
+    .hero-section .description{
+        width: 100%;
+    }
+}
+.hero-section button{
+    font-family: 'sf mono', 'fira code', 'fira mono', 'roboto mono', monospace;
+    padding: 10px 10px;
+    background-color: transparent;
+    color: #64ffda;
+    border: 2px solid #64ffda;
+    border-radius: 5px;
+    margin-top: 1em;
+    margin-left: 15px;
+    letter-spacing: 1px;
+}
+.hero-section button:hover{
+    background-color: #64ffdb0b;
+}
+.about-heading{
+    margin-top: 20vh;
+    font-family: 'Lato', sans-serif;
+    font-size: 2em;
+    /* font-size: 20px; */
+}
+.about-heading .neon-color{
+    color: #64ffda;
+    margin-right: 0px;
+    font-family: 'sf mono', 'fira code', 'fira mono', 'roboto mono', monospace;
+}
+.about-heading .grey-color{
+    color: #8892B0;
+}
+.about-heading .grey-line-cont{
+    display: inline-block;
+    height: 20px;
+    /* justify-content: center; */
+    /* margin-top: 10px; */
+}
+.about-heading .grey-line{
+    display: inline-block;
+    width: 30vw;
+    height: 2px;
+    margin: 5px 2px;
+    background-color: #8892b069;
+}
+.row{
+    width: 100%;
+    /* height: 30vh; */
+}
+.col-sm-12.about-text{
+    padding: 20px 10px;
+    background-color: #0A192F;
+    /* background-color: red; */
+    color: #8892B0;
+    text-align: justify;
+    font-size: 16px;
+    font-family: 'sf mono', 'fira code', 'fira mono', 'roboto mono', monospace;
+    letter-spacing: 1.2px;
+}
+ul{
+    list-style-type: none;
+}
+
+.col-sm-6.skills ul li::before{
+        content: "";
+        /* content: "\2022";  Add content: \2022 is the CSS Code/unicode for a bullet */
+        /* color: red; Change the color */
+        font-weight: bold; /* If you want it to be bold */
+        display: inline-block; /* Needed to add space between the bullet and the text */
+        width: 0px;
+        height: 0px;
+        border-left: 5px solid transparent;
+	    border-right: 5px solid transparent;
+	    border-bottom: 10px solid #64ffda;
+        rotate: 45deg;
+        transform: rotateZ(45deg);
+        margin-left: -1em;
+        margin-right: 0.5em ; /*  Also needed for space (tweak if needed) */
+        animation: rotate 5s infinite linear;
+    }
+@keyframes rotate {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+.neon-text{
+    color: #64ffda;
+}
+.about-image .image-container{
+    width: 20rem;
+    height: 20rem;
+    margin:0px auto;
+    margin-top: 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image:url('https://brittanychiang.com/static/30a645f7db6038f83287d0c6042d3b2b/f9526/me.avif');
+    background-image:url('https://lh3.googleusercontent.com/Y0uw0aILJVMn2b329CnhWBZYNVpPrX9TdkUoIcCltMEehsYr72LKyjjSIkJZW4v-tbxWExThOqYAWqj881efRhfX9o2WYpBWVTr0ESTcTVxsOR0-aeP_wD7TUfRwZTP6_Gc_6nt5IF3UmvGyU-p73P9aCYH6fHUiKThRoTxol1Bs6pfTCqRN6rni_ewOpA-W24xX5ngns3KSTLpDT36Np6jG5wsOxOLlWt997kYLDP4GSv9djmguRmdB7qw_D97kMaMCtMi6oRq8pzjHWY3Wf1RDXw24WanQuO-fESjcbqn9KJ-HU4ZvsWAxNqosw8NkwkRqBzXAOpLfDEnXD6-m-8iBhVbIQ9CfzwaMESUOnb30Uue33bimUWEOxx3J0Y-VDomRF5wNLYFuR1yIN4Dc4VJBBa92BAKfSk7u9y4xB831UHq2-ot-97L1BE5p3MU2MAE7yZ8Mt7fOAVTo1fhJCBwPnh3NufNM8VtqyID6MiID_b9aSI_TGXhRa7Y6rnrRDeGp39DmE4HmTE7Z1jclpP1i0yM2gDcADhMdAGVIWR50GIvvoRcyQI0GZNj2Jfyq7UuuIQtJmCCCRgN8t8RdL72-wqgY9wRpbTkRfk2acpqMlGHcZfVg9qikjYteQGNV5WMl8Tzl7a00w_r3KkGCzDw08oa9zaqNw-Aby03X9EeOZmY5PC8Asfay9ThLclEhm_YrePX8MWvIfmHClrkBFFnQqGcO2qo2EgLmb1tA6MjeUr-QOPlWtifa2ZPvarfHAtiBtnZcYbwvKoBy39mZxmVzqMZbb26hgKTU=w708-h943-no?authuser=1');
+    transition: all 0.3s ease-in-out;
+    filter: grayscale(70%);
+    border: 2px solid #64ffda;
+}
+
+.about-image .image-container .filter{
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(100, 255, 219, 0.748); */
+    transition: all 0.3s ease-in-out;
+}
+.about-image .image-container:hover{
+    transform: translate(-5px,-10px);
+    filter: grayscale(0%);
+}
+.about-image .image-container .filter:hover{
+    opacity: 0;
+}
+.expierence-list a{
+    padding: 20px 10px;
+    background-color: #0A192F;
+    color: #8892B0;
+    text-align: justify;
+    font-size: 16px;
+    font-family: 'sf mono', 'fira code', 'fira mono', 'roboto mono', monospace !important;
+    letter-spacing: 1.2px !important;
+}
+.list-group-item .list-group-item-action .active{
+    background-color: #0A192F !important;
+    border: 0px !important;
+    text-decoration: underline !important;
+}
+
+
+.list-group{
+    --bs-list-group-color: #6c757d;
+    --bs-list-group-bg: #fff;
+    --bs-list-group-border-color: transparent;
+    --bs-list-group-border-width: 0px;
+    --bs-list-group-border-radius: 0.5rem;
+    --bs-list-group-item-padding-x: 1rem;
+    --bs-list-group-item-padding-y: 0.5rem;
+    --bs-list-group-action-color: #495057;
+    --bs-list-group-action-hover-color: #495057;
+    --bs-list-group-action-hover-bg: #0A192F;
+    --bs-list-group-action-active-color: #6c757d;
+    --bs-list-group-action-active-bg: #0A192F;
+    --bs-list-group-disabled-color: #6c757d;
+    --bs-list-group-disabled-bg: #0A192F;
+    --bs-list-group-active-color: #64ffda;
+    --bs-list-group-active-bg: #0A192F !important;
+    --bs-list-group-active-border-color: #64ffda !important;
+    
+}
+
+
+#nav-tabContent div{
+    font-family: 'sf mono', 'fira code', 'fira mono', 'roboto mono', monospace !important;
+    color: #8892B0;
+    padding-left: 10px;
+    word-wrap: break-word;
+}
+#nav-tabContent div h4{
+    color: #fff !important;
+    font-family: 'Lato', sans-serif !important;
+    font-size:20px;
+}
+#nav-tabContent div h4 span{
+    color: #64ffda !important;
+    font-size: 18px;
+    margin-left: 4px;
+}
+#nav-tabContent div p{
+    color: #8892B0;
+    font-size: 16px;
+    font-family: 'sf mono', 'fira code', 'fira mono', 'roboto mono', monospace !important;
+    letter-spacing: 1.2px !important;
+}
+#nav-tabContent ul{
+    list-style:none;
+}
+#nav-tabContent ul li::before{
+    content: "";
+    /* content: "\2022";  Add content: \2022 is the CSS Code/unicode for a bullet */
+    /* color: red; Change the color */
+    font-weight: bold; /* If you want it to be bold */
+    display: inline-block; /* Needed to add space between the bullet and the text */
+    width: 0px;
+    height: 0px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid #64ffda;
+    rotate: 45deg;
+    transform: rotateZ(45deg);
+    margin-left: -1em;
+    margin-right: 0.5em ; /*  Also needed for space (tweak if needed) */
+    animation: rotate 5s infinite linear;
+}
+#nav-tabContent ul li{
+    margin-bottom: 10px;
+    
+}
+
+

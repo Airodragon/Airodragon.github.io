@@ -1,0 +1,114 @@
+.content{
+    margin-top: 84px;
+    max-width: 100vw;
+    height: calc(100vh - 84px);
+    background-color: #0A192F;
+}
+.social-icon{
+    position: absolute;
+    position: fixed;
+    width: 5%;
+    height: fit-content;
+    bottom: 0;
+    /* left: 10px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #0A192F;
+    padding: 10px 0px;
+    padding-bottom: 0px;
+
+}
+.social-icon .line{
+    width: 2.2px;
+    height: 80px;
+    background-color: #c1cbea;
+    margin-top: 30px;
+}
+.middle{
+    /* position: absolute; */
+    /* position: fixed; */
+    width: 80%;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aquamarine; */
+}
+.right{
+    position: absolute;
+    position: fixed;
+    width: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-icon a{
+    color: #c1cbea;
+    font-size: 1.5rem;
+    margin: 10px 8px;
+
+}
+
+.social-icon a i:hover{
+    color: #64ffda;
+    
+    
+}
+.social-icon a:hover{
+    transform: translate(0px,-10px);
+}
+.social-icon a{
+    transition: transform 0.5s ease-out;
+}
+.social-icon a span{
+    background-color: #64ffda !important;
+    color: #64ffda !important;
+}
+
+.email-id{
+    position: fixed;
+    right: 0;
+    bottom: 15%;
+    width: 4%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+    align-items: center;
+    padding-bottom: 10px;
+}
+.email-id:hover{
+    transform: translate(0px,-10px);
+}
+
+.email-id{
+    transition: transform 0.5s ease-out;
+}
+.email-id a{
+    color: #c1cbea;
+    font-size: 1.2rem;
+    width: 20px;
+    /* margin: 10px 8px; */
+    writing-mode: sideways-lr !important;
+    text-orientation:mixed;
+    text-decoration: none;
+    
+    writing-mode: sideways-rl;
+    text-orientation:mixed;
+    transform: rotateZ(90deg);
+
+}
+.email-id a:hover{
+    color: #64ffda;
+}
+.line2{
+    width: 2.2px;
+    height: 100px;
+    margin-bottom: 160px;
+    background-color: #c1cbea;
+    position: absolute;
+}
