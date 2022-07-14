@@ -148,8 +148,7 @@ ul{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-image:url('https://brittanychiang.com/static/30a645f7db6038f83287d0c6042d3b2b/f9526/me.avif');
-    background-image:url('https://lh3.googleusercontent.com/Y0uw0aILJVMn2b329CnhWBZYNVpPrX9TdkUoIcCltMEehsYr72LKyjjSIkJZW4v-tbxWExThOqYAWqj881efRhfX9o2WYpBWVTr0ESTcTVxsOR0-aeP_wD7TUfRwZTP6_Gc_6nt5IF3UmvGyU-p73P9aCYH6fHUiKThRoTxol1Bs6pfTCqRN6rni_ewOpA-W24xX5ngns3KSTLpDT36Np6jG5wsOxOLlWt997kYLDP4GSv9djmguRmdB7qw_D97kMaMCtMi6oRq8pzjHWY3Wf1RDXw24WanQuO-fESjcbqn9KJ-HU4ZvsWAxNqosw8NkwkRqBzXAOpLfDEnXD6-m-8iBhVbIQ9CfzwaMESUOnb30Uue33bimUWEOxx3J0Y-VDomRF5wNLYFuR1yIN4Dc4VJBBa92BAKfSk7u9y4xB831UHq2-ot-97L1BE5p3MU2MAE7yZ8Mt7fOAVTo1fhJCBwPnh3NufNM8VtqyID6MiID_b9aSI_TGXhRa7Y6rnrRDeGp39DmE4HmTE7Z1jclpP1i0yM2gDcADhMdAGVIWR50GIvvoRcyQI0GZNj2Jfyq7UuuIQtJmCCCRgN8t8RdL72-wqgY9wRpbTkRfk2acpqMlGHcZfVg9qikjYteQGNV5WMl8Tzl7a00w_r3KkGCzDw08oa9zaqNw-Aby03X9EeOZmY5PC8Asfay9ThLclEhm_YrePX8MWvIfmHClrkBFFnQqGcO2qo2EgLmb1tA6MjeUr-QOPlWtifa2ZPvarfHAtiBtnZcYbwvKoBy39mZxmVzqMZbb26hgKTU=w708-h943-no?authuser=1');
+    background-image: url(../assets/img/me.JPG);
     transition: all 0.3s ease-in-out;
     filter: grayscale(70%);
     border: 2px solid #64ffda;
