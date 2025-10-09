@@ -1,0 +1,413 @@
+import React, { useState, useEffect } from 'react';
+import { Code, Mail, Github, Linkedin, Briefcase, Moon, Sun, ExternalLink, ChevronDown, Menu, X, Award, BookOpen, GraduationCap } from 'lucide-react';
+
+export default function Portfolio() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const [isDark, setIsDark] = useState(false);
+
+  const skills = {
+    languages: ['JavaScript', 'Java', 'Python'],
+    frontend: ['React', 'Next.js', 'Redux', 'React Query', 'AngularJS'],
+    backend: ['Node.js', 'Express.js', 'MongoDB', 'PostgreSQL', 'SQL'],
+    tools: ['Git', 'Postman', 'Strapi CMS', 'Bootstrap', 'Material UI']
+  };
+
+  const experiences = [
+    {
+      company: 'Apiwiz',
+      role: 'Software Engineer',
+      period: 'Sep 2023 - Present',
+      location: 'India',
+      highlights: [
+        'Leading API Design module development with Swagger/OpenAPI specification generation via visual UI',
+        'Implemented flow-based interface for API Builder module, improving development lifecycle efficiency',
+        'Ensured integration of best practices for reusability, modular design, and OpenAPI compliance',
+        'Collaborated across frontend (React) and backend systems in Agile environment'
+      ]
+    },
+    {
+      company: 'Nowfloats (Reliance Jio Platforms)',
+      role: 'Software Engineer',
+      period: 'Jun 2023 - Sep 2023',
+      location: 'Hyderabad, India',
+      highlights: [
+        'Developed official Jio Finance website using Next.js and Strapi CMS',
+        'Built full-stack architecture for Jio Loans accessed via MyJio, JFS app, and web',
+        'Delivered frontend features and optimizations for Boost platform'
+      ]
+    },
+    {
+      company: 'Cloudologic',
+      role: 'Developer Intern',
+      period: 'Jan 2023 - Jun 2023',
+      location: 'New Delhi, India',
+      highlights: [
+        'Redesigned responsive UI and improved SEO for SkillKai and Cloudologic platforms',
+        'Reduced load times and enhanced usability through frontend codebase optimization'
+      ]
+    }
+  ];
+
+  const projects = [
+    {
+      title: 'API Design & Builder Platform',
+      description: 'Enterprise-grade visual UI for Swagger/OpenAPI specification generation with comprehensive version control, reusable components, and flow-based API design interface.',
+      tech: ['React', 'Node.js', 'OpenAPI', 'Redux', 'Express.js'],
+      type: 'Professional',
+      company: 'Apiwiz'
+    },
+    {
+      title: 'Jio Finance Platform',
+      description: 'Full-stack development of official Jio Finance website and Jio Loans platform with seamless CMS integration and cross-platform accessibility.',
+      tech: ['Next.js', 'Strapi CMS', 'React', 'Node.js'],
+      type: 'Professional',
+      company: 'Reliance Jio'
+    },
+    {
+      title: 'Cloud Desktop Environment',
+      description: 'Linux-based cloud desktop interface providing real-time virtual access through secure MERN stack architecture with interactive terminal access.',
+      tech: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Linux'],
+      type: 'Personal',
+      company: 'Personal Project'
+    }
+  ];
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsMenuOpen(false);
+      setActiveSection(id);
+    }
+  };
+
+  const bgClass = isDark 
+    ? 'bg-slate-950' 
+    : 'bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100';
+  
+  const textClass = isDark ? 'text-white' : 'text-slate-900';
+  const textSecondary = isDark ? 'text-slate-300' : 'text-slate-700';
+  const textMuted = isDark ? 'text-slate-400' : 'text-slate-600';
+  const cardBg = isDark ? 'bg-slate-900/50' : 'bg-white/80';
+  const cardBorder = isDark ? 'border-slate-800' : 'border-slate-200';
+  const cardHover = isDark ? 'hover:border-blue-500/50' : 'hover:border-blue-400';
+  const navBg = isDark ? 'bg-slate-950/90' : 'bg-white/90';
+  const navBorder = isDark ? 'border-slate-800' : 'border-slate-200';
+  const accentColor = isDark ? 'text-blue-400' : 'text-blue-600';
+  const accentBg = isDark ? 'bg-blue-500/10' : 'bg-blue-100';
+  const buttonPrimary = isDark 
+    ? 'bg-blue-600 hover:bg-blue-700 text-white' 
+    : 'bg-blue-600 hover:bg-blue-700 text-white';
+  const buttonSecondary = isDark
+    ? 'border-blue-500 text-blue-400 hover:bg-blue-500/10'
+    : 'border-blue-600 text-blue-600 hover:bg-blue-50';
+
+  return (
+    <div className={`min-h-screen transition-colors duration-300 ${bgClass} ${textClass}`}>
+      {/* Navigation */}
+      <nav className={`fixed top-0 w-full z-50 backdrop-blur-lg ${navBg} border-b ${navBorder} transition-colors duration-300`}>
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex justify-between items-center">
+            <div className={`text-2xl font-bold ${accentColor}`}>
+              Mihir Srivastava
+            </div>
+            
+            {/* Desktop Menu */}
+            <div className="hidden md:flex gap-8 items-center">
+              {['home', 'about', 'experience', 'projects', 'contact'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className={`capitalize transition-colors ${
+                    activeSection === item ? accentColor : `${textMuted} hover:${accentColor.split(' ')[0]}`
+                  }`}
+                >
+                  {item}
+                </button>
+              ))}
+              <button
+                onClick={() => setIsDark(!isDark)}
+                className={`p-2 rounded-lg ${cardBg} ${cardBorder} border transition-all hover:scale-110`}
+              >
+                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center gap-3">
+              <button
+                onClick={() => setIsDark(!isDark)}
+                className={`p-2 rounded-lg ${cardBg} ${cardBorder} border`}
+              >
+                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </button>
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? <X /> : <Menu />}
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="md:hidden mt-4 pb-4 flex flex-col gap-4">
+              {['home', 'about', 'experience', 'projects', 'contact'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className={`capitalize text-left ${textSecondary} hover:${accentColor.split(' ')[0]} transition-colors`}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="min-h-screen flex items-center justify-center relative px-6 pt-20">
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          <div className={`mb-4 ${accentColor} font-medium text-sm md:text-base uppercase tracking-wide`}>
+            Software Engineer
+          </div>
+          <h1 className={`text-5xl md:text-7xl lg:text-8xl font-bold mb-6 ${textClass}`}>
+            Mihir Srivastava
+          </h1>
+          <p className={`text-xl md:text-2xl ${textSecondary} mb-6 font-light`}>
+            Full-Stack Developer specializing in React & Next.js
+          </p>
+          <p className={`text-base md:text-lg ${textMuted} mb-12 max-w-3xl mx-auto leading-relaxed`}>
+            Building scalable, performant web applications with modern technologies. Currently leading API design development at Apiwiz, with experience delivering enterprise solutions for Reliance Jio and other major platforms.
+          </p>
+          
+          <div className="flex gap-4 justify-center mb-12 flex-wrap">
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className={`px-8 py-3 rounded-lg font-semibold transition-all ${buttonPrimary} shadow-lg hover:shadow-xl`}
+            >
+              Get In Touch
+            </button>
+            <a 
+              href="#"
+              className={`px-8 py-3 border-2 rounded-lg font-semibold transition-all ${buttonSecondary}`}
+            >
+              View Resume
+            </a>
+          </div>
+
+          <div className="flex gap-6 justify-center">
+            <a href="mailto:mihir190801@gmail.com" className={`p-3 rounded-lg ${cardBg} ${cardBorder} border transition-all hover:scale-110 ${cardHover}`}>
+              <Mail className="w-5 h-5" />
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className={`p-3 rounded-lg ${cardBg} ${cardBorder} border transition-all hover:scale-110 ${cardHover}`}>
+              <Github className="w-5 h-5" />
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={`p-3 rounded-lg ${cardBg} ${cardBorder} border transition-all hover:scale-110 ${cardHover}`}>
+              <Linkedin className="w-5 h-5" />
+            </a>
+            <a href="https://leetcode.com" target="_blank" rel="noopener noreferrer" className={`p-3 rounded-lg ${cardBg} ${cardBorder} border transition-all hover:scale-110 ${cardHover}`}>
+              <Code className="w-5 h-5" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center gap-4 mb-12">
+            <h2 className={`text-3xl md:text-4xl font-bold ${textClass}`}>About Me</h2>
+            <div className={`flex-1 h-px ${isDark ? 'bg-slate-800' : 'bg-slate-300'}`}></div>
+          </div>
+
+          <div className="grid md:grid-cols-5 gap-12">
+            <div className="md:col-span-3">
+              <div className={`backdrop-blur-sm ${cardBg} rounded-2xl p-8 border ${cardBorder} transition-all`}>
+                <div className="flex items-start gap-4 mb-6">
+                  <div className={`p-3 ${accentBg} rounded-lg`}>
+                    <Briefcase className={`w-6 h-6 ${accentColor}`} />
+                  </div>
+                  <div>
+                    <h3 className={`text-xl font-semibold mb-2 ${textClass}`}>Professional Background</h3>
+                    <p className={`${textMuted} leading-relaxed`}>
+                      Software Engineer with 2+ years of experience in full-stack development, currently leading API design initiatives at Apiwiz. Previously contributed to major projects at Reliance Jio Platforms.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 mb-6">
+                  <div className={`p-3 ${accentBg} rounded-lg`}>
+                    <GraduationCap className={`w-6 h-6 ${accentColor}`} />
+                  </div>
+                  <div>
+                    <h3 className={`text-xl font-semibold mb-2 ${textClass}`}>Education</h3>
+                    <p className={`${textMuted} leading-relaxed`}>
+                      B.Tech in Computer Science and Engineering from NIET, NCR (2019-2023) with a CGPA of 7.5. Strong foundation in Data Structures, Algorithms, and Database Management Systems.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className={`p-3 ${accentBg} rounded-lg`}>
+                    <Award className={`w-6 h-6 ${accentColor}`} />
+                  </div>
+                  <div>
+                    <h3 className={`text-xl font-semibold mb-2 ${textClass}`}>Expertise</h3>
+                    <p className={`${textMuted} leading-relaxed`}>
+                      Specialized in React ecosystem, API architecture, and scalable full-stack solutions. Passionate about clean code, modern design patterns, and delivering exceptional user experiences.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="md:col-span-2 space-y-4">
+              <h3 className={`text-2xl font-bold ${textClass} mb-6`}>Technical Skills</h3>
+              
+              {Object.entries(skills).map(([category, items]) => (
+                <div key={category} className={`backdrop-blur-sm ${cardBg} rounded-xl p-5 border ${cardBorder} ${cardHover} transition-all`}>
+                  <h4 className={`text-sm font-semibold mb-3 uppercase tracking-wide ${accentColor}`}>{category}</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {items.map((skill) => (
+                      <span key={skill} className={`px-3 py-1 ${accentBg} rounded-full text-sm ${isDark ? 'text-blue-300' : 'text-blue-700'} font-medium`}>
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className={`py-24 px-6 ${isDark ? 'bg-slate-900/30' : 'bg-slate-100/50'}`}>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center gap-4 mb-12">
+            <h2 className={`text-3xl md:text-4xl font-bold ${textClass}`}>Work Experience</h2>
+            <div className={`flex-1 h-px ${isDark ? 'bg-slate-800' : 'bg-slate-300'}`}></div>
+          </div>
+
+          <div className="space-y-6">
+            {experiences.map((exp, index) => (
+              <div 
+                key={index}
+                className={`backdrop-blur-sm ${cardBg} rounded-2xl p-8 border ${cardBorder} ${cardHover} transition-all hover:shadow-lg`}
+              >
+                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
+                  <div>
+                    <h3 className={`text-2xl font-bold ${textClass} mb-1`}>{exp.role}</h3>
+                    <p className={`text-xl ${accentColor} font-semibold mb-2`}>{exp.company}</p>
+                  </div>
+                  <div className={`${textMuted} text-sm md:text-right`}>
+                    <p className="font-medium">{exp.period}</p>
+                    <p>{exp.location}</p>
+                  </div>
+                </div>
+                
+                <ul className="space-y-3">
+                  {exp.highlights.map((highlight, idx) => (
+                    <li key={idx} className={`flex gap-3 ${textSecondary}`}>
+                      <span className={`${accentColor} mt-1 font-bold`}>•</span>
+                      <span className="leading-relaxed">{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center gap-4 mb-12">
+            <h2 className={`text-3xl md:text-4xl font-bold ${textClass}`}>Featured Projects</h2>
+            <div className={`flex-1 h-px ${isDark ? 'bg-slate-800' : 'bg-slate-300'}`}></div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project, index) => (
+              <div 
+                key={index}
+                className={`backdrop-blur-sm ${cardBg} rounded-2xl p-6 border ${cardBorder} ${cardHover} transition-all hover:shadow-xl hover:transform hover:scale-105 flex flex-col`}
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <div className={`p-3 ${accentBg} rounded-lg`}>
+                    <BookOpen className={`w-6 h-6 ${accentColor}`} />
+                  </div>
+                  <span className={`text-xs px-3 py-1 ${isDark ? 'bg-purple-500/20 text-purple-300 border-purple-500/30' : 'bg-purple-100 text-purple-700 border-purple-300'} rounded-full border font-medium`}>
+                    {project.type}
+                  </span>
+                </div>
+                
+                <h3 className={`text-xl font-bold mb-2 ${textClass}`}>{project.title}</h3>
+                <p className={`text-sm ${accentColor} mb-3 font-medium`}>{project.company}</p>
+                <p className={`${textMuted} mb-4 flex-grow leading-relaxed text-sm`}>{project.description}</p>
+                
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-200 dark:border-slate-700">
+                  {project.tech.map((tech) => (
+                    <span key={tech} className={`text-xs ${textMuted} font-medium`}>
+                      #{tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className={`py-24 px-6 ${isDark ? 'bg-slate-900/30' : 'bg-slate-100/50'}`}>
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className={`text-3xl md:text-5xl font-bold mb-6 ${textClass}`}>Let's Work Together</h2>
+          <p className={`text-lg ${textSecondary} mb-12 leading-relaxed max-w-2xl mx-auto`}>
+            I'm currently open to new opportunities and collaborations. Whether you have a project in mind, need consultation, or just want to connect, I'd love to hear from you.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+            <a 
+              href="mailto:mihir190801@gmail.com"
+              className={`px-10 py-4 rounded-lg font-semibold text-lg transition-all ${buttonPrimary} shadow-lg hover:shadow-xl`}
+            >
+              Send an Email
+            </a>
+            <a 
+              href="tel:+918700993995"
+              className={`px-10 py-4 border-2 rounded-lg font-semibold text-lg transition-all ${buttonSecondary}`}
+            >
+              +91 8700993995
+            </a>
+          </div>
+
+          <div className={`${cardBg} ${cardBorder} border rounded-xl p-8 inline-block`}>
+            <p className={`${textMuted} mb-4`}>Connect with me on</p>
+            <div className="flex gap-4 justify-center">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className={`${textMuted} hover:${accentColor.split(' ')[0]} transition-colors`}>
+                <Github className="w-6 h-6" />
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={`${textMuted} hover:${accentColor.split(' ')[0]} transition-colors`}>
+                <Linkedin className="w-6 h-6" />
+              </a>
+              <a href="https://leetcode.com" target="_blank" rel="noopener noreferrer" className={`${textMuted} hover:${accentColor.split(' ')[0]} transition-colors`}>
+                <Code className="w-6 h-6" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className={`py-8 px-6 border-t ${navBorder} backdrop-blur-sm`}>
+        <div className="max-w-6xl mx-auto text-center">
+          <p className={textMuted}>© 2025 Mihir Srivastava. All rights reserved.</p>
+          <p className={`text-sm mt-2 ${textMuted}`}>New Delhi, India</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
