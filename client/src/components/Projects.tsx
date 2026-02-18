@@ -2,6 +2,7 @@ import { ArrowUpRight, BookOpen, Code2, Sparkles } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import SectionHeader from '@/components/SectionHeader';
 import { portfolioContent } from '@/lib/portfolio-content';
 
 export default function Projects() {
@@ -10,14 +11,11 @@ export default function Projects() {
   return (
     <section id="projects" className="section-shell">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-10 flex items-end justify-between gap-4">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary">Projects</p>
-            <h2 className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">Selected work</h2>
-            <p className="mt-2 text-sm text-muted-foreground">Live product references and practical engineering work.</p>
-          </div>
-          <div className="hidden h-px flex-1 bg-gradient-to-r from-border/80 to-transparent md:block" />
-        </div>
+        <SectionHeader
+          eyebrow="Projects"
+          title="Selected work"
+          description="Live product references, engineering implementations, and practical architecture outcomes."
+        />
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {projects.map((project, index) => {
@@ -30,10 +28,10 @@ export default function Projects() {
                 className="surface-card ui-animate group relative flex h-full flex-col overflow-hidden border-border/70"
                 data-testid={`card-project-${index}`}
               >
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-r from-primary/14 via-primary/6 to-transparent" />
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-r from-primary/14 via-primary/7 to-transparent" />
                 <CardHeader className="flex flex-row items-center justify-between gap-3 space-y-0 pb-3">
                   <div className="flex items-center gap-3">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary shadow-sm ring-1 ring-primary/20">
                       <BookOpen className="h-5 w-5" />
                     </span>
                     <Badge variant="outline" className="rounded-full border-primary/40 bg-primary/10 text-primary">
@@ -54,14 +52,14 @@ export default function Projects() {
                 </CardHeader>
 
                 <CardContent className="flex flex-1 flex-col">
-                  <CardTitle className="text-xl" data-testid={`text-title-${index}`}>
+                  <CardTitle className="text-xl tracking-tight" data-testid={`text-title-${index}`}>
                     {project.title}
                   </CardTitle>
                   <p className="mt-2 text-sm font-medium text-primary" data-testid={`text-company-${index}`}>
                     {project.company}
                   </p>
                   <p
-                    className="mt-3 flex-grow text-sm leading-relaxed text-muted-foreground"
+                    className="mt-3 flex-grow text-sm leading-relaxed text-muted-foreground sm:text-[0.95rem]"
                     data-testid={`text-description-${index}`}
                   >
                     {project.description}

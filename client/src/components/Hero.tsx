@@ -1,6 +1,7 @@
 import { ArrowRight, Code, Github, Globe, Linkedin, Mail, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { NavSectionId, portfolioContent, SocialLink } from '@/lib/portfolio-content';
 import AiCharacterAvatar from '@/components/AiCharacterAvatar';
 
@@ -17,13 +18,16 @@ const iconBySocialId: Record<SocialLink['id'], typeof Mail> = {
 };
 
 export default function Hero({ onNavigate }: HeroProps) {
-  const { profile, highlights, socials } = portfolioContent;
+  const { profile, highlights, socials, skills } = portfolioContent;
+  const heroStack = skills
+    .find((category) => category.category === 'Frameworks / Technologies')
+    ?.items.slice(0, 5) ?? ['React', 'Next.js', 'Node.js', 'Express.js', 'Redux'];
 
   return (
-    <section id="home" className="hero-shell section-shell relative flex items-center pt-28">
-      <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+    <section id="home" className="hero-shell section-shell relative flex items-center pt-28 sm:pt-32">
+      <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <div>
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary shadow-sm">
             <Sparkles className="h-3.5 w-3.5" />
             {profile.role}
           </div>
@@ -31,10 +35,22 @@ export default function Hero({ onNavigate }: HeroProps) {
           <h1 className="text-balance text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
             {profile.name}
           </h1>
-          <p className="mt-4 max-w-2xl text-balance text-xl text-foreground/90 sm:text-2xl">
+          <p className="mt-4 max-w-2xl text-balance text-lg text-foreground/90 sm:text-2xl">
             {profile.headline}
           </p>
-          <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">{profile.summary}</p>
+          <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground sm:text-base">{profile.summary}</p>
+
+          <div className="mt-6 flex flex-wrap gap-2">
+            {heroStack.map((item) => (
+              <Badge
+                key={item}
+                variant="outline"
+                className="rounded-full border-border/70 bg-background/70 px-3 py-1 text-[11px] uppercase tracking-wide text-muted-foreground"
+              >
+                {item}
+              </Badge>
+            ))}
+          </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Button
@@ -58,7 +74,7 @@ export default function Hero({ onNavigate }: HeroProps) {
             </Button>
           </div>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap gap-2.5">
             {socials.map((social) => {
               const Icon = iconBySocialId[social.id];
               return (
@@ -81,7 +97,7 @@ export default function Hero({ onNavigate }: HeroProps) {
           </p>
         </div>
 
-        <Card className="surface-card ui-animate border-border/70 shadow-xl">
+        <Card className="surface-card ui-animate border-border/70 shadow-xl lg:ml-4">
           <CardContent className="space-y-7 p-6">
             <AiCharacterAvatar />
 

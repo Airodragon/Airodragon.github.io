@@ -1,20 +1,19 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import SectionHeader from '@/components/SectionHeader';
 import { portfolioContent } from '@/lib/portfolio-content';
 
 export default function Experience() {
   const { experience } = portfolioContent;
 
   return (
-    <section id="experience" className="section-shell bg-muted/20">
+    <section id="experience" className="section-shell bg-muted/15">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-10 flex items-end justify-between gap-4">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary">Experience</p>
-            <h2 className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">Building production systems</h2>
-          </div>
-          <div className="hidden h-px flex-1 bg-gradient-to-r from-border/80 to-transparent md:block" />
-        </div>
+        <SectionHeader
+          eyebrow="Experience"
+          title="Building production systems"
+          description="Hands-on delivery across API platforms, fintech products, and performance-focused frontend architecture."
+        />
 
         <div className="space-y-5">
           {experience.map((exp, index) => (
@@ -23,6 +22,7 @@ export default function Experience() {
               className="surface-card ui-animate relative overflow-hidden border-border/70"
               data-testid={`card-experience-${index}`}
             >
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-r from-primary/12 to-transparent" />
               <CardContent className="p-6 sm:p-7">
                 <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                   <div>
@@ -32,7 +32,7 @@ export default function Experience() {
                     <p className="mt-1 text-base font-semibold text-primary" data-testid={`text-company-${index}`}>
                       {exp.company}
                     </p>
-                    <p className="mt-2 max-w-2xl text-sm text-muted-foreground">{exp.summary}</p>
+                    <p className="mt-2 max-w-2xl text-sm text-muted-foreground sm:text-[0.95rem]">{exp.summary}</p>
                   </div>
                   <div className="space-y-2 text-sm text-muted-foreground md:text-right">
                     <p className="font-medium" data-testid={`text-period-${index}`}>{exp.period}</p>
@@ -47,7 +47,7 @@ export default function Experience() {
                   {exp.highlights.map((highlight, idx) => (
                     <li
                       key={idx}
-                      className="flex gap-3 rounded-xl border border-border/70 bg-background/70 p-3 text-foreground/80"
+                      className="flex gap-3 rounded-xl border border-border/65 bg-background/75 p-3 text-foreground/80"
                       data-testid={`text-highlight-${index}-${idx}`}
                     >
                       <span className="mt-1 font-bold text-primary">•</span>

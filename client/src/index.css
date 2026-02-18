@@ -212,19 +212,35 @@
   --muted-border: hsl(from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
   --accent-border: hsl(from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
+
 }
 
 :root {
   --ui-accent-hue: 209;
   --ui-radius: 18px;
   --ui-motion-ms: 260ms;
-  --ui-section-space: 6rem;
-  --ui-grid-opacity: 0.42;
+  --ui-section-space: 6.5rem;
+  --ui-grid-opacity: 0.34;
   --ui-gradient-opacity: 1;
-  --ui-card-bg: hsl(var(--card) / 0.55);
-  --ui-card-border: hsl(var(--card-border) / 0.72);
-  --ui-card-shadow: 0 18px 36px -26px hsl(var(--foreground) / 0.48);
-  --ui-card-blur: 12px;
+  --ui-page-bg: 220 30% 98%;
+  --ui-page-bg-alt: 220 28% 96%;
+  --ui-nav-bg: hsl(var(--background) / 0.82);
+  --ui-nav-border: hsl(var(--border) / 0.7);
+  --ui-nav-shadow: 0 14px 32px -24px hsl(var(--foreground) / 0.28);
+  --ui-card-bg: hsl(var(--card) / 0.74);
+  --ui-card-border: hsl(var(--card-border) / 0.78);
+  --ui-card-shadow: 0 14px 30px -22px hsl(var(--foreground) / 0.28);
+  --ui-card-hover-shadow: 0 22px 38px -24px hsl(var(--foreground) / 0.35);
+  --ui-card-hover-translate: -3px;
+  --ui-card-blur: 8px;
+}
+
+.dark {
+  --ui-page-bg: 222 32% 10%;
+  --ui-page-bg-alt: 222 30% 12%;
+  --ui-nav-bg: hsl(var(--background) / 0.72);
+  --ui-nav-border: hsl(var(--border) / 0.72);
+  --ui-nav-shadow: 0 16px 36px -24px hsl(220 60% 2% / 0.72);
 }
 
 [data-density='compact'] {
@@ -262,33 +278,45 @@
 }
 
 [data-card-style='glass'] {
-  --ui-card-bg: hsl(var(--card) / 0.55);
-  --ui-card-border: hsl(var(--card-border) / 0.72);
-  --ui-card-shadow: 0 18px 36px -26px hsl(var(--foreground) / 0.48);
-  --ui-card-blur: 12px;
+  --ui-card-bg: hsl(var(--card) / 0.74);
+  --ui-card-border: hsl(var(--card-border) / 0.78);
+  --ui-card-shadow: 0 14px 30px -22px hsl(var(--foreground) / 0.28);
+  --ui-card-hover-shadow: 0 22px 38px -24px hsl(var(--foreground) / 0.35);
+  --ui-card-hover-translate: -3px;
+  --ui-card-blur: 8px;
 }
 
 [data-card-style='solid'] {
-  --ui-card-bg: hsl(var(--card) / 0.96);
+  --ui-card-bg: hsl(var(--card) / 0.98);
   --ui-card-border: hsl(var(--card-border) / 1);
-  --ui-card-shadow: 0 14px 28px -22px hsl(var(--foreground) / 0.36);
+  --ui-card-shadow: 0 10px 24px -20px hsl(var(--foreground) / 0.24);
+  --ui-card-hover-shadow: 0 14px 28px -20px hsl(var(--foreground) / 0.32);
+  --ui-card-hover-translate: -2px;
   --ui-card-blur: 0px;
 }
 
 [data-card-style='minimal'] {
-  --ui-card-bg: hsl(var(--card) / 0.18);
-  --ui-card-border: hsl(var(--border) / 0.58);
+  --ui-card-bg: hsl(var(--card) / 0.28);
+  --ui-card-border: hsl(var(--border) / 0.64);
   --ui-card-shadow: none;
+  --ui-card-hover-shadow: 0 0 0 1px hsl(var(--border) / 0.7);
+  --ui-card-hover-translate: 0px;
   --ui-card-blur: 0px;
 }
 
 .portfolio-root {
   position: relative;
   overflow-x: clip;
+  background:
+    linear-gradient(
+      180deg,
+      hsl(var(--ui-page-bg)) 0%,
+      hsl(var(--ui-page-bg-alt)) 100%
+    );
 }
 
 .section-shell {
-  padding-inline: 1.5rem;
+  padding-inline: clamp(1rem, 2.8vw, 2rem);
   padding-block: var(--ui-section-space);
 }
 
@@ -319,12 +347,19 @@
 }
 
 .surface-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 35px -22px hsl(var(--foreground) / 0.52) !important;
+  transform: translateY(var(--ui-card-hover-translate));
+  box-shadow: var(--ui-card-hover-shadow) !important;
 }
 
 [data-motion='reduced'] .surface-card:hover {
   transform: none;
+}
+
+.surface-nav {
+  border: 1px solid var(--ui-nav-border);
+  background-color: var(--ui-nav-bg);
+  backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: var(--ui-nav-shadow);
 }
 
 .ui-gradient-backdrop {
@@ -350,10 +385,10 @@
 
 .ui-grid-backdrop {
   background-image:
-    linear-gradient(hsl(var(--border) / 0.42) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(var(--border) / 0.42) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(circle at top, black 25%, transparent 82%);
+    linear-gradient(hsl(var(--border) / 0.28) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border) / 0.28) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(circle at top, black 28%, transparent 84%);
   opacity: var(--ui-grid-opacity);
   transition: opacity var(--ui-motion-ms) ease;
 }
@@ -365,6 +400,7 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    text-rendering: optimizeLegibility;
   }
 }
 
