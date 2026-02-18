@@ -1,9 +1,18 @@
+import { portfolioContent } from '@/lib/portfolio-content';
+
 export default function Footer() {
+  const { profile } = portfolioContent;
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="py-8 px-6 border-t border-border backdrop-blur-sm">
-      <div className="max-w-6xl mx-auto text-center">
-        <p className="text-muted-foreground" data-testid="text-copyright">© 2025 Mihir Srivastava. All rights reserved.</p>
-        <p className="text-sm mt-2 text-muted-foreground" data-testid="text-location">New Delhi, India</p>
+    <footer className="border-t border-border/70 px-6 py-8 backdrop-blur-sm">
+      <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-2 text-center sm:flex-row sm:text-left">
+        <p className="text-sm text-muted-foreground" data-testid="text-copyright">
+          &copy; {year} {profile.name}. All rights reserved.
+        </p>
+        <p className="text-sm text-muted-foreground" data-testid="text-location">
+          {profile.location}
+        </p>
       </div>
     </footer>
   );

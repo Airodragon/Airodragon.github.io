@@ -1,74 +1,57 @@
 import { Card, CardContent } from '@/components/ui/card';
-
-const experiences = [
-  {
-    company: 'Apiwiz',
-    role: 'Software Engineer',
-    period: 'Sep 2023 - Present',
-    location: 'India',
-    highlights: [
-      'Leading API Design module development with Swagger/OpenAPI specification generation via visual UI',
-      'Implemented flow-based interface for API Builder module, improving development lifecycle efficiency',
-      'Ensured integration of best practices for reusability, modular design, and OpenAPI compliance',
-      'Collaborated across frontend (React) and backend systems in Agile environment'
-    ]
-  },
-  {
-    company: 'Nowfloats (Reliance Jio Platforms)',
-    role: 'Software Engineer',
-    period: 'Jun 2023 - Sep 2023',
-    location: 'Hyderabad, India',
-    highlights: [
-      'Developed official Jio Finance website using Next.js and Strapi CMS',
-      'Built full-stack architecture for Jio Loans accessed via MyJio, JFS app, and web',
-      'Delivered frontend features and optimizations for Boost platform'
-    ]
-  },
-  {
-    company: 'Cloudologic',
-    role: 'Developer Intern',
-    period: 'Jan 2023 - Jun 2023',
-    location: 'New Delhi, India',
-    highlights: [
-      'Redesigned responsive UI and improved SEO for SkillKai and Cloudologic platforms',
-      'Reduced load times and enhanced usability through frontend codebase optimization'
-    ]
-  }
-];
+import { Badge } from '@/components/ui/badge';
+import { portfolioContent } from '@/lib/portfolio-content';
 
 export default function Experience() {
+  const { experience } = portfolioContent;
+
   return (
-    <section id="experience" className="py-24 px-6 bg-muted/30">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex items-center gap-4 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">Work Experience</h2>
-          <div className="flex-1 h-px bg-border"></div>
+    <section id="experience" className="section-shell bg-muted/20">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-10 flex items-end justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary">Experience</p>
+            <h2 className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">Building production systems</h2>
+          </div>
+          <div className="hidden h-px flex-1 bg-gradient-to-r from-border/80 to-transparent md:block" />
         </div>
 
-        <div className="space-y-6">
-          {experiences.map((exp, index) => (
-            <Card 
-              key={index}
-              className="hover-elevate"
+        <div className="space-y-5">
+          {experience.map((exp, index) => (
+            <Card
+              key={`${exp.company}-${exp.period}`}
+              className="surface-card ui-animate relative overflow-hidden border-border/70"
               data-testid={`card-experience-${index}`}
             >
-              <CardContent className="p-8">
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
+              <CardContent className="p-6 sm:p-7">
+                <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                   <div>
-                    <h3 className="text-2xl font-bold text-foreground mb-1" data-testid={`text-role-${index}`}>{exp.role}</h3>
-                    <p className="text-xl text-primary font-semibold mb-2" data-testid={`text-company-${index}`}>{exp.company}</p>
+                    <h3 className="text-xl font-semibold text-foreground sm:text-2xl" data-testid={`text-role-${index}`}>
+                      {exp.role}
+                    </h3>
+                    <p className="mt-1 text-base font-semibold text-primary" data-testid={`text-company-${index}`}>
+                      {exp.company}
+                    </p>
+                    <p className="mt-2 max-w-2xl text-sm text-muted-foreground">{exp.summary}</p>
                   </div>
-                  <div className="text-muted-foreground text-sm md:text-right">
+                  <div className="space-y-2 text-sm text-muted-foreground md:text-right">
                     <p className="font-medium" data-testid={`text-period-${index}`}>{exp.period}</p>
                     <p data-testid={`text-location-${index}`}>{exp.location}</p>
+                    <Badge variant="outline" className="rounded-full border-primary/40 bg-primary/10 text-primary">
+                      Role Impact
+                    </Badge>
                   </div>
                 </div>
-                
-                <ul className="space-y-3">
+
+                <ul className="grid gap-3 sm:grid-cols-2">
                   {exp.highlights.map((highlight, idx) => (
-                    <li key={idx} className="flex gap-3 text-foreground/80" data-testid={`text-highlight-${index}-${idx}`}>
-                      <span className="text-primary mt-1 font-bold">•</span>
-                      <span className="leading-relaxed">{highlight}</span>
+                    <li
+                      key={idx}
+                      className="flex gap-3 rounded-xl border border-border/70 bg-background/70 p-3 text-foreground/80"
+                      data-testid={`text-highlight-${index}-${idx}`}
+                    >
+                      <span className="mt-1 font-bold text-primary">•</span>
+                      <span className="text-sm leading-relaxed">{highlight}</span>
                     </li>
                   ))}
                 </ul>

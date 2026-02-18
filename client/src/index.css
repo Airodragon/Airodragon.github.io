@@ -214,6 +214,150 @@
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
+:root {
+  --ui-accent-hue: 209;
+  --ui-radius: 18px;
+  --ui-motion-ms: 260ms;
+  --ui-section-space: 6rem;
+  --ui-grid-opacity: 0.42;
+  --ui-gradient-opacity: 1;
+  --ui-card-bg: hsl(var(--card) / 0.55);
+  --ui-card-border: hsl(var(--card-border) / 0.72);
+  --ui-card-shadow: 0 18px 36px -26px hsl(var(--foreground) / 0.48);
+  --ui-card-blur: 12px;
+}
+
+[data-density='compact'] {
+  --ui-section-space: 4.25rem;
+}
+
+[data-density='comfortable'] {
+  --ui-section-space: 6rem;
+}
+
+[data-density='spacious'] {
+  --ui-section-space: 8rem;
+}
+
+[data-motion='reduced'] {
+  --ui-motion-ms: 1ms;
+}
+
+[data-motion='balanced'] {
+  --ui-motion-ms: 260ms;
+}
+
+[data-motion='expressive'] {
+  --ui-motion-ms: 420ms;
+}
+
+[data-gradients='off'] {
+  --ui-grid-opacity: 0;
+  --ui-gradient-opacity: 0;
+}
+
+[data-gradients='on'] {
+  --ui-grid-opacity: 0.42;
+  --ui-gradient-opacity: 1;
+}
+
+[data-card-style='glass'] {
+  --ui-card-bg: hsl(var(--card) / 0.55);
+  --ui-card-border: hsl(var(--card-border) / 0.72);
+  --ui-card-shadow: 0 18px 36px -26px hsl(var(--foreground) / 0.48);
+  --ui-card-blur: 12px;
+}
+
+[data-card-style='solid'] {
+  --ui-card-bg: hsl(var(--card) / 0.96);
+  --ui-card-border: hsl(var(--card-border) / 1);
+  --ui-card-shadow: 0 14px 28px -22px hsl(var(--foreground) / 0.36);
+  --ui-card-blur: 0px;
+}
+
+[data-card-style='minimal'] {
+  --ui-card-bg: hsl(var(--card) / 0.18);
+  --ui-card-border: hsl(var(--border) / 0.58);
+  --ui-card-shadow: none;
+  --ui-card-blur: 0px;
+}
+
+.portfolio-root {
+  position: relative;
+  overflow-x: clip;
+}
+
+.section-shell {
+  padding-inline: 1.5rem;
+  padding-block: var(--ui-section-space);
+}
+
+.hero-shell {
+  min-height: max(680px, calc(100vh - 4.25rem));
+}
+
+.ui-animate {
+  transition:
+    transform var(--ui-motion-ms) ease,
+    opacity var(--ui-motion-ms) ease,
+    background-color var(--ui-motion-ms) ease,
+    border-color var(--ui-motion-ms) ease,
+    box-shadow var(--ui-motion-ms) ease;
+}
+
+.surface-card {
+  background-color: var(--ui-card-bg) !important;
+  border-color: var(--ui-card-border) !important;
+  border-radius: var(--ui-radius) !important;
+  box-shadow: var(--ui-card-shadow) !important;
+  backdrop-filter: saturate(140%) blur(var(--ui-card-blur));
+  transition:
+    transform var(--ui-motion-ms) ease,
+    border-color var(--ui-motion-ms) ease,
+    box-shadow var(--ui-motion-ms) ease,
+    background-color var(--ui-motion-ms) ease;
+}
+
+.surface-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 35px -22px hsl(var(--foreground) / 0.52) !important;
+}
+
+[data-motion='reduced'] .surface-card:hover {
+  transform: none;
+}
+
+.ui-gradient-backdrop {
+  background:
+    radial-gradient(
+      circle at 12% 20%,
+      hsl(var(--ui-accent-hue) 90% 60% / 0.2) 0%,
+      transparent 33%
+    ),
+    radial-gradient(
+      circle at 86% 4%,
+      hsl(calc(var(--ui-accent-hue) + 55) 85% 62% / 0.16) 0%,
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 75% 88%,
+      hsl(calc(var(--ui-accent-hue) + 120) 72% 60% / 0.12) 0%,
+      transparent 38%
+    );
+  opacity: var(--ui-gradient-opacity);
+  transition: opacity var(--ui-motion-ms) ease;
+}
+
+.ui-grid-backdrop {
+  background-image:
+    linear-gradient(hsl(var(--border) / 0.42) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border) / 0.42) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at top, black 25%, transparent 82%);
+  opacity: var(--ui-grid-opacity);
+  transition: opacity var(--ui-motion-ms) ease;
+}
+
 @layer base {
   * {
     @apply border-border;
