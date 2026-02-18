@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - cursor/next-js-freelance-site-09af
   workflow_dispatch:
 
 jobs:
