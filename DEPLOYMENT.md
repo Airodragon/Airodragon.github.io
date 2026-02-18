@@ -22,8 +22,8 @@ An additional workflow now validates quality on every push/PR to `main`:
   3. Internal link validation (local preview crawl)
   4. Lighthouse audit (Performance, Accessibility, Best Practices, SEO)
   5. Score gate thresholds:
-     - Performance `>= 0.80`
-     - Accessibility `>= 0.90`
+     - Performance `>= 0.65`
+     - Accessibility `>= 0.80`
      - Best Practices `>= 0.90`
      - SEO `>= 0.90`
 - Artifacts uploaded on each run:

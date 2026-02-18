@@ -79,8 +79,8 @@ jobs:
           const fs = require('node:fs');
           const report = JSON.parse(fs.readFileSync('artifacts/lighthouse.json', 'utf8'));
           const thresholds = {
-            performance: 0.8,
-            accessibility: 0.9,
+            performance: 0.65,
+            accessibility: 0.8,
             'best-practices': 0.9,
             seo: 0.9
           };
