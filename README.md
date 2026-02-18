@@ -61,6 +61,15 @@ If webhook URL is not set, submissions are logged server-side.
 
 Vercel will run `npm run build` automatically and serve the site with Next.js optimizations.
 
+### Optional: automatic production deploy from GitHub Actions
+
+The repository includes `.github/workflows/deploy-vercel.yml` (triggers on `main`).
+Add these repository secrets to enable it:
+
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
+
 ## Custom domain
 
 After first deployment:
