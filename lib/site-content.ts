@@ -154,6 +154,7 @@ export const pricingPlans = [
     price: "$1,500",
     timeline: "1-2 weeks",
     description: "Perfect for solo founders who need a clean, professional website quickly.",
+    featured: false,
     features: [
       "Up to 5 responsive pages",
       "Conversion-focused copy guidance",
@@ -179,6 +180,7 @@ export const pricingPlans = [
     price: "$800/mo",
     timeline: "Monthly",
     description: "Continuous optimization, rapid updates, and strategic support after launch.",
+    featured: false,
     features: [
       "Priority implementation queue",
       "Ongoing A/B testing and CRO support",

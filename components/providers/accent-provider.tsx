@@ -25,18 +25,18 @@ function isAccentId(value: string | null): value is AccentId {
 }
 
 export function AccentProvider({ children }: { children: ReactNode }) {
-  const [accent, setAccentState] = useState<AccentId>("violet");
-
-  useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (isAccentId(saved)) {
-      setAccentState(saved);
-      document.documentElement.dataset.accent = saved;
-      return;
+  const [accent, setAccentState] = useState<AccentId>(() => {
+    if (typeof window === "undefined") {
+      return "violet";
     }
 
-    document.documentElement.dataset.accent = "violet";
-  }, []);
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return isAccentId(saved) ? saved : "violet";
+  });
+
+  useEffect(() => {
+    document.documentElement.dataset.accent = accent;
+  }, [accent]);
 
   const setAccent = (nextAccent: AccentId) => {
     setAccentState(nextAccent);
