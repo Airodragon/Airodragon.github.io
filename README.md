@@ -13,8 +13,8 @@ A production-ready freelancing website built with **Next.js App Router**, custom
   - In-memory rate limiting
   - Optional webhook forwarding (`CONTACT_WEBHOOK_URL`)
 - SEO baseline:
-  - Metadata + OpenGraph
-  - Dynamic icon and OpenGraph image routes
+  - Metadata + OpenGraph tags
+  - Dynamic icon route
   - `sitemap.xml` and `robots.txt`
 - Security headers configured in `next.config.ts`
 - CI workflow for lint + production build
