@@ -2,6 +2,7 @@ import { ArrowRight, Code, Github, Globe, Linkedin, Mail, Sparkles } from 'lucid
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { NavSectionId, portfolioContent, SocialLink } from '@/lib/portfolio-content';
+import AiCharacterAvatar from '@/components/AiCharacterAvatar';
 
 interface HeroProps {
   onNavigate: (section: NavSectionId) => void;
@@ -51,7 +52,9 @@ export default function Hero({ onNavigate }: HeroProps) {
               asChild
               data-testid="button-view-resume"
             >
-              <a href={profile.resumeUrl}>View Resume</a>
+              <a href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
+                View Resume
+              </a>
             </Button>
           </div>
 
@@ -80,6 +83,8 @@ export default function Hero({ onNavigate }: HeroProps) {
 
         <Card className="surface-card ui-animate border-border/70 shadow-xl">
           <CardContent className="space-y-7 p-6">
+            <AiCharacterAvatar />
+
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">At a glance</p>
               <p className="mt-2 text-sm text-muted-foreground">{profile.subheadline}</p>

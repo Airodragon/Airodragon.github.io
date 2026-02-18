@@ -27,7 +27,9 @@ export interface ProjectItem {
   tech: string[];
   type: 'Professional' | 'Personal' | 'Open Source';
   company: string;
-  url?: string;
+  liveUrl?: string;
+  repoUrl?: string;
+  liveLabel?: string;
 }
 
 export const portfolioContent = {
@@ -56,8 +58,8 @@ export const portfolioContent = {
     { id: 'email', label: 'Email', href: 'mailto:mihir190801@gmail.com' },
     { id: 'portfolio', label: 'Portfolio', href: 'https://airodragon.github.io' },
     { id: 'github', label: 'GitHub', href: 'https://github.com/Airodragon' },
-    { id: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/mihir-srivastava/' },
-    { id: 'leetcode', label: 'LeetCode', href: 'https://leetcode.com/u/mihir190801/' },
+    { id: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/mihir-srivastava-m19s19/' },
+    { id: 'leetcode', label: 'LeetCode', href: 'https://leetcode.com/airodragon' },
   ] as const satisfies ReadonlyArray<SocialLink>,
   highlights: [
     { label: 'Years Experience', value: '2+' },
@@ -156,6 +158,8 @@ export const portfolioContent = {
       tech: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Linux'],
       type: 'Personal',
       company: 'Personal Project',
+      repoUrl: 'https://github.com/Airodragon',
+      liveLabel: 'View Source',
     },
     {
       title: 'API Design & Builder Platform',
@@ -164,6 +168,8 @@ export const portfolioContent = {
       tech: ['React', 'OpenAPI', 'Node.js', 'Redux'],
       type: 'Professional',
       company: 'Apiwiz',
+      liveUrl: 'https://apiwiz.io',
+      liveLabel: 'Visit Platform',
     },
     {
       title: 'Jio Finance Platform',
@@ -172,6 +178,8 @@ export const portfolioContent = {
       tech: ['Next.js', 'Strapi CMS', 'React', 'Node.js'],
       type: 'Professional',
       company: 'Reliance Jio',
+      liveUrl: 'https://www.jio.com/jiofinance',
+      liveLabel: 'Visit Platform',
     },
   ] as const satisfies ReadonlyArray<ProjectItem>,
 };

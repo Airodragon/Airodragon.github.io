@@ -1,6 +1,7 @@
-import { ArrowUpRight, BookOpen, Sparkles } from 'lucide-react';
+import { ArrowUpRight, BookOpen, Code2, Sparkles } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { portfolioContent } from '@/lib/portfolio-content';
 
 export default function Projects() {
@@ -13,6 +14,7 @@ export default function Projects() {
           <div>
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">Projects</p>
             <h2 className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">Selected work</h2>
+            <p className="mt-2 text-sm text-muted-foreground">Live product references and practical engineering work.</p>
           </div>
           <div className="hidden h-px flex-1 bg-gradient-to-r from-border/80 to-transparent md:block" />
         </div>
@@ -21,9 +23,10 @@ export default function Projects() {
           {projects.map((project, index) => (
             <Card
               key={`${project.title}-${project.company}`}
-              className="surface-card ui-animate group flex h-full flex-col border-border/70"
+              className="surface-card ui-animate group relative flex h-full flex-col overflow-hidden border-border/70"
               data-testid={`card-project-${index}`}
             >
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-r from-primary/14 via-primary/6 to-transparent" />
               <CardHeader className="flex flex-row items-center justify-between gap-3 space-y-0 pb-3">
                 <div className="flex items-center gap-3">
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary">
@@ -33,8 +36,14 @@ export default function Projects() {
                     {project.type}
                   </Badge>
                 </div>
-                {'url' in project && project.url ? (
-                  <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
+                {project.liveUrl ? (
+                  <Badge variant="outline" className="rounded-full border-emerald-400/45 bg-emerald-500/10 text-emerald-500">
+                    Live
+                  </Badge>
+                ) : project.repoUrl ? (
+                  <Badge variant="outline" className="rounded-full border-primary/40 bg-primary/10 text-primary">
+                    Code
+                  </Badge>
                 ) : (
                   <Sparkles className="h-4 w-4 text-primary" />
                 )}
@@ -64,6 +73,37 @@ export default function Projects() {
                       #{tech}
                     </span>
                   ))}
+                </div>
+
+                <div className="mt-4 flex flex-wrap items-center gap-2">
+                  {project.liveUrl && (
+                    <Button
+                      asChild
+                      size="sm"
+                      className="gap-1.5"
+                      data-testid={`link-project-live-${index}`}
+                    >
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                        {project.liveLabel ?? 'Live Preview'}
+                        <ArrowUpRight className="h-3.5 w-3.5" />
+                      </a>
+                    </Button>
+                  )}
+
+                  {project.repoUrl && (
+                    <Button
+                      asChild
+                      size="sm"
+                      variant="outline"
+                      className="gap-1.5"
+                      data-testid={`link-project-repo-${index}`}
+                    >
+                      <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
+                        Source
+                        <Code2 className="h-3.5 w-3.5" />
+                      </a>
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>
