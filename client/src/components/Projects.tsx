@@ -33,7 +33,11 @@ export default function Projects() {
                     {project.type}
                   </Badge>
                 </div>
-                {project.url ? <ArrowUpRight className="h-4 w-4 text-muted-foreground" /> : <Sparkles className="h-4 w-4 text-primary" />}
+                {'url' in project && project.url ? (
+                  <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
+                ) : (
+                  <Sparkles className="h-4 w-4 text-primary" />
+                )}
               </CardHeader>
 
               <CardContent className="flex flex-1 flex-col">
