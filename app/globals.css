@@ -1,0 +1,98 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+:root {
+  --background: 240 24% 98%;
+  --surface: 0 0% 100%;
+  --foreground: 240 32% 12%;
+  --muted-foreground: 240 11% 42%;
+  --border: 240 17% 89%;
+  --accent: 262 84% 62%;
+  --accent-foreground: 0 0% 100%;
+  --accent-soft: 262 100% 97%;
+  --danger: 0 75% 52%;
+}
+
+.dark {
+  --background: 240 22% 8%;
+  --surface: 244 20% 11%;
+  --foreground: 210 20% 98%;
+  --muted-foreground: 215 14% 70%;
+  --border: 245 14% 22%;
+  --accent-soft: 262 35% 18%;
+  --danger: 0 72% 64%;
+}
+
+:root[data-accent="violet"] {
+  --accent: 262 84% 62%;
+  --accent-soft: 262 100% 97%;
+}
+
+.dark:root[data-accent="violet"] {
+  --accent-soft: 262 35% 18%;
+}
+
+:root[data-accent="blue"] {
+  --accent: 221 90% 60%;
+  --accent-soft: 214 100% 96%;
+}
+
+.dark:root[data-accent="blue"] {
+  --accent-soft: 221 48% 18%;
+}
+
+:root[data-accent="emerald"] {
+  --accent: 155 70% 43%;
+  --accent-soft: 151 81% 95%;
+}
+
+.dark:root[data-accent="emerald"] {
+  --accent-soft: 155 37% 16%;
+}
+
+:root[data-accent="rose"] {
+  --accent: 348 83% 58%;
+  --accent-soft: 348 100% 96%;
+}
+
+.dark:root[data-accent="rose"] {
+  --accent-soft: 348 40% 18%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: hsl(var(--accent) / 0.2);
+}
+
+:focus-visible {
+  outline: 2px solid hsl(var(--accent));
+  outline-offset: 2px;
+}
+
+.bg-grid {
+  background-image: linear-gradient(to right, hsl(var(--border) / 0.65) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border) / 0.65) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
