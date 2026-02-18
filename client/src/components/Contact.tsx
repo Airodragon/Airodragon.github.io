@@ -1,4 +1,4 @@
-import { Code, Github, Linkedin, Mail, PhoneCall } from 'lucide-react';
+import { Code, Github, Globe, Linkedin, Mail, PhoneCall } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { portfolioContent } from '@/lib/portfolio-content';
@@ -8,6 +8,7 @@ const socialIconMap = {
   linkedin: Linkedin,
   leetcode: Code,
   email: Mail,
+  portfolio: Globe,
 };
 
 export default function Contact() {

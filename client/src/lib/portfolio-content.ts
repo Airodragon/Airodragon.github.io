@@ -2,7 +2,7 @@ export type NavSectionId = 'home' | 'about' | 'experience' | 'projects' | 'conta
 export type CustomizableSectionId = Exclude<NavSectionId, 'home'>;
 
 export interface SocialLink {
-  id: 'email' | 'github' | 'linkedin' | 'leetcode';
+  id: 'email' | 'portfolio' | 'github' | 'linkedin' | 'leetcode';
   label: string;
   href: string;
 }
@@ -34,16 +34,16 @@ export const portfolioContent = {
   profile: {
     name: 'Mihir Srivastava',
     role: 'Software Engineer',
-    headline: 'Designing modern, high-performance web products from idea to scale.',
-    subheadline: 'Full-stack developer focused on React, Next.js, API architecture, and delightful UX.',
+    headline: 'Software Engineer building scalable full-stack products with modern web technologies.',
+    subheadline: 'Specialized in React, Next.js, Node.js, and API-centric product development.',
     summary:
-      'I build scalable web experiences with a strong focus on product quality, performance, and design systems. Currently leading API design and visual workflow initiatives at Apiwiz.',
+      'I build performant and user-focused applications across frontend and backend systems. Currently leading API Design module development at Apiwiz, with prior experience delivering fintech products at Reliance Jio Platforms.',
     location: 'New Delhi, India',
     email: 'mihir190801@gmail.com',
     phone: '+91 8700993995',
     timezone: 'IST (UTC+5:30)',
-    resumeUrl: '#',
-    availability: 'Open to collaborations and product-focused engineering roles.',
+    resumeUrl: '/Mihir_Srivastava.pdf',
+    availability: 'Open to software engineering opportunities and strong product collaborations.',
   },
   navigation: [
     { id: 'home', label: 'Home' },
@@ -54,45 +54,60 @@ export const portfolioContent = {
   ] as const satisfies ReadonlyArray<{ id: NavSectionId; label: string }>,
   socials: [
     { id: 'email', label: 'Email', href: 'mailto:mihir190801@gmail.com' },
-    { id: 'github', label: 'GitHub', href: 'https://github.com' },
-    { id: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com' },
-    { id: 'leetcode', label: 'LeetCode', href: 'https://leetcode.com' },
+    { id: 'portfolio', label: 'Portfolio', href: 'https://airodragon.github.io' },
+    { id: 'github', label: 'GitHub', href: 'https://github.com/Airodragon' },
+    { id: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/mihir-srivastava/' },
+    { id: 'leetcode', label: 'LeetCode', href: 'https://leetcode.com/u/mihir190801/' },
   ] as const satisfies ReadonlyArray<SocialLink>,
   highlights: [
     { label: 'Years Experience', value: '2+' },
-    { label: 'Enterprise Products', value: '8+' },
-    { label: 'Primary Stack', value: 'React + Node' },
+    { label: 'Current Role', value: 'Apiwiz · Software Engineer' },
+    { label: 'Education', value: 'B.Tech CSE · CGPA 7.5' },
   ] as const,
   aboutCards: [
     {
       title: 'Professional Background',
-      body: 'Software Engineer with hands-on experience building enterprise and consumer products across API platforms, financial services, and growth-focused web apps.',
+      body: 'Software Engineer with experience delivering API platforms, fintech products, and full-stack web solutions focused on performance and usability.',
     },
     {
       title: 'Education',
-      body: 'B.Tech in Computer Science and Engineering from NIET, NCR (2019-2023), with deep focus on DSA, software architecture, and database systems.',
+      body: 'B.Tech in Computer Science and Engineering from NIET, NCR (2019 - 2023), graduating with CGPA 7.5.',
     },
     {
-      title: 'Engineering Focus',
-      body: 'I enjoy translating complex workflows into clear and intuitive experiences through thoughtful frontend architecture, reusable components, and clean abstractions.',
+      title: 'Core Strengths',
+      body: 'Strong foundation in Data Structures and Algorithms, OOP, and DBMS with a practical approach to reusable system design and clean implementation.',
     },
   ] as const,
   skills: [
     {
       category: 'Languages',
-      items: ['JavaScript', 'TypeScript', 'Java', 'Python'],
+      items: ['JavaScript', 'Java', 'Python'],
     },
     {
-      category: 'Frontend',
-      items: ['React', 'Next.js', 'Redux', 'React Query', 'AngularJS'],
+      category: 'Frameworks / Technologies',
+      items: [
+        'React',
+        'Next.js',
+        'Node.js',
+        'Express.js',
+        'Redux',
+        'React Query',
+        'Bootstrap',
+        'Material UI',
+        'AngularJS',
+      ],
     },
     {
-      category: 'Backend',
-      items: ['Node.js', 'Express.js', 'PostgreSQL', 'MongoDB', 'OpenAPI'],
+      category: 'Database',
+      items: ['MongoDB', 'PostgreSQL', 'SQL'],
     },
     {
-      category: 'Tooling',
-      items: ['Git', 'Postman', 'Strapi CMS', 'Vite', 'Tailwind CSS'],
+      category: 'Tools',
+      items: ['Postman', 'Git', 'Strapi (CMS)'],
+    },
+    {
+      category: 'CS Fundamentals',
+      items: ['Data Structures & Algorithms', 'OOP', 'DBMS'],
     },
   ] as const satisfies ReadonlyArray<SkillCategory>,
   experience: [
@@ -101,12 +116,12 @@ export const portfolioContent = {
       role: 'Software Engineer',
       period: 'Sep 2023 - Present',
       location: 'India',
-      summary: 'Own and evolve API design experiences for enterprise teams.',
+      summary: 'Leading API design workflows with focus on visual tooling and scalable architecture.',
       highlights: [
-        'Leading API Design module development with Swagger/OpenAPI specification generation via visual UI',
-        'Implemented a flow-based interface for API Builder, improving product workflow efficiency',
-        'Established reusable frontend patterns and OpenAPI-compliant system architecture',
-        'Collaborated across frontend and backend teams in an Agile delivery model',
+        'Leading API Design module development to generate Swagger/OpenAPI specifications through a visual UI',
+        'Built flow-based API Builder interfaces to design, link, and test APIs efficiently',
+        'Integrated best practices for modular design, reusability, and OpenAPI compliance',
+        'Collaborated across React frontend and backend systems in an Agile environment',
       ],
     },
     {
@@ -114,11 +129,11 @@ export const portfolioContent = {
       role: 'Software Engineer',
       period: 'Jun 2023 - Sep 2023',
       location: 'Hyderabad, India',
-      summary: 'Delivered production-ready fintech interfaces and CMS-driven experiences.',
+      summary: 'Delivered production fintech experiences across web and app channels.',
       highlights: [
         'Developed the official Jio Finance website using Next.js and Strapi CMS',
-        'Contributed to full-stack architecture for Jio Loans across app and web channels',
-        'Shipped frontend features and optimizations for Boost platform initiatives',
+        'Built full-stack architecture for Jio Loans used across MyJio, JFS app, and web',
+        'Delivered Boost platform enhancements including pagination and rich text improvements',
       ],
     },
     {
@@ -126,37 +141,37 @@ export const portfolioContent = {
       role: 'Developer Intern',
       period: 'Jan 2023 - Jun 2023',
       location: 'New Delhi, India',
-      summary: 'Improved UX, performance, and discoverability for core web products.',
+      summary: 'Improved UI quality, SEO, and frontend performance on production platforms.',
       highlights: [
         'Redesigned responsive UI and improved SEO for SkillKai and Cloudologic platforms',
-        'Reduced load times and improved usability through frontend optimizations',
+        'Reduced load times and improved usability through frontend codebase optimization',
       ],
     },
   ] as const satisfies ReadonlyArray<ExperienceItem>,
   projects: [
     {
+      title: 'Cloud Desktop Environment',
+      description:
+        'Created a Linux-based cloud desktop interface with real-time virtual access, allowing users to interact with remote Linux environments using a secure MERN stack.',
+      tech: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Linux'],
+      type: 'Personal',
+      company: 'Personal Project',
+    },
+    {
       title: 'API Design & Builder Platform',
       description:
-        'Enterprise-grade visual UI for Swagger/OpenAPI specification generation with reusable components and version-aware workflow controls.',
-      tech: ['React', 'Node.js', 'OpenAPI', 'Redux', 'Express.js'],
+        'Enterprise UI platform for visual API design, Swagger/OpenAPI generation, and reusable workflow-driven API development.',
+      tech: ['React', 'OpenAPI', 'Node.js', 'Redux'],
       type: 'Professional',
       company: 'Apiwiz',
     },
     {
       title: 'Jio Finance Platform',
       description:
-        'Full-stack delivery of a high-visibility financial platform with CMS integration and cross-channel compatibility.',
+        'Contributed to official Jio Finance and Jio Loans experiences with CMS-backed architecture and cross-channel delivery.',
       tech: ['Next.js', 'Strapi CMS', 'React', 'Node.js'],
       type: 'Professional',
       company: 'Reliance Jio',
-    },
-    {
-      title: 'Cloud Desktop Environment',
-      description:
-        'A Linux-based cloud desktop prototype enabling real-time browser access with secure MERN architecture and terminal tooling.',
-      tech: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Linux'],
-      type: 'Personal',
-      company: 'Personal Project',
     },
   ] as const satisfies ReadonlyArray<ProjectItem>,
 };

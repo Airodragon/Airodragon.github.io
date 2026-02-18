@@ -1,4 +1,4 @@
-import { ArrowRight, Code, Github, Linkedin, Mail, Sparkles } from 'lucide-react';
+import { ArrowRight, Code, Github, Globe, Linkedin, Mail, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { NavSectionId, portfolioContent, SocialLink } from '@/lib/portfolio-content';
@@ -9,6 +9,7 @@ interface HeroProps {
 
 const iconBySocialId: Record<SocialLink['id'], typeof Mail> = {
   email: Mail,
+  portfolio: Globe,
   github: Github,
   linkedin: Linkedin,
   leetcode: Code,
