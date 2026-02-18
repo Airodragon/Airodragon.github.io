@@ -21,11 +21,14 @@ export default function Projects() {
           {projects.map((project, index) => {
             const liveUrl = 'liveUrl' in project ? project.liveUrl : undefined;
             const repoUrl = 'repoUrl' in project ? project.repoUrl : undefined;
+            const isFeatured = index === 0;
 
             return (
               <Card
                 key={`${project.title}-${project.company}`}
-                className="surface-card ui-animate group relative flex h-full flex-col overflow-hidden border-border/70"
+                className={`surface-card ui-animate group relative flex h-full flex-col overflow-hidden border-border/70 ${
+                  isFeatured ? 'md:col-span-2 xl:col-span-2' : ''
+                }`}
                 data-testid={`card-project-${index}`}
               >
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-r from-primary/14 via-primary/7 to-transparent" />
@@ -37,6 +40,11 @@ export default function Projects() {
                     <Badge variant="outline" className="rounded-full border-primary/40 bg-primary/10 text-primary">
                       {project.type}
                     </Badge>
+                    {isFeatured && (
+                      <Badge variant="outline" className="rounded-full border-indigo-400/45 bg-indigo-500/10 text-indigo-500">
+                        Featured
+                      </Badge>
+                    )}
                   </div>
                   {liveUrl ? (
                     <Badge variant="outline" className="rounded-full border-emerald-400/45 bg-emerald-500/10 text-emerald-500">
@@ -52,14 +60,17 @@ export default function Projects() {
                 </CardHeader>
 
                 <CardContent className="flex flex-1 flex-col">
-                  <CardTitle className="text-xl tracking-tight" data-testid={`text-title-${index}`}>
+                  <CardTitle
+                    className={`tracking-tight ${isFeatured ? 'text-2xl' : 'text-xl'}`}
+                    data-testid={`text-title-${index}`}
+                  >
                     {project.title}
                   </CardTitle>
                   <p className="mt-2 text-sm font-medium text-primary" data-testid={`text-company-${index}`}>
                     {project.company}
                   </p>
                   <p
-                    className="mt-3 flex-grow text-sm leading-relaxed text-muted-foreground sm:text-[0.95rem]"
+                    className={`mt-3 flex-grow leading-relaxed text-muted-foreground ${isFeatured ? 'text-base' : 'text-sm sm:text-[0.95rem]'}`}
                     data-testid={`text-description-${index}`}
                   >
                     {project.description}

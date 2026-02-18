@@ -22,6 +22,7 @@ export default function Hero({ onNavigate }: HeroProps) {
   const heroStack = skills
     .find((category) => category.category === 'Frameworks / Technologies')
     ?.items.slice(0, 5) ?? ['React', 'Next.js', 'Node.js', 'Express.js', 'Redux'];
+  const currentRoleHighlight = highlights.find((item) => item.label === 'Current Role');
 
   return (
     <section id="home" className="hero-shell section-shell relative flex items-center pt-28 sm:pt-32">
@@ -32,7 +33,7 @@ export default function Hero({ onNavigate }: HeroProps) {
             {profile.role}
           </div>
 
-          <h1 className="text-balance text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+          <h1 className="heading-display text-balance text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
             {profile.name}
           </h1>
           <p className="mt-4 max-w-2xl text-balance text-lg text-foreground/90 sm:text-2xl">
@@ -40,12 +41,24 @@ export default function Hero({ onNavigate }: HeroProps) {
           </p>
           <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground sm:text-base">{profile.summary}</p>
 
+          <div className="mt-5 flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+            {currentRoleHighlight?.value && (
+              <span className="inline-flex items-center gap-1 rounded-full border border-border/70 bg-background/80 px-3 py-1 text-muted-foreground">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                {currentRoleHighlight.value}
+              </span>
+            )}
+            <span className="inline-flex items-center rounded-full border border-border/70 bg-background/80 px-3 py-1 text-muted-foreground">
+              {profile.location}
+            </span>
+          </div>
+
           <div className="mt-6 flex flex-wrap gap-2">
             {heroStack.map((item) => (
               <Badge
                 key={item}
                 variant="outline"
-                className="rounded-full border-border/70 bg-background/70 px-3 py-1 text-[11px] uppercase tracking-wide text-muted-foreground"
+                className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[11px] uppercase tracking-wide text-muted-foreground"
               >
                 {item}
               </Badge>
@@ -56,7 +69,7 @@ export default function Hero({ onNavigate }: HeroProps) {
             <Button
               size="lg"
               onClick={() => onNavigate('contact')}
-              className="group gap-2 px-8 shadow-lg"
+              className="group gap-2 px-8 shadow-lg shadow-primary/20"
               data-testid="button-get-in-touch"
             >
               Get In Touch
@@ -78,7 +91,14 @@ export default function Hero({ onNavigate }: HeroProps) {
             {socials.map((social) => {
               const Icon = iconBySocialId[social.id];
               return (
-                <Button key={social.id} variant="outline" size="icon" asChild data-testid={`link-${social.id}`}>
+                <Button
+                  key={social.id}
+                  variant="outline"
+                  size="icon"
+                  className="rounded-xl bg-background/75"
+                  asChild
+                  data-testid={`link-${social.id}`}
+                >
                   <a
                     href={social.href}
                     target={social.id === 'email' ? undefined : '_blank'}

@@ -9,9 +9,15 @@ interface NavigationProps {
   onNavigate: (section: NavSectionId) => void;
   activeSection: NavSectionId;
   visibleSections?: NavSectionId[];
+  scrollProgress?: number;
 }
 
-export default function Navigation({ onNavigate, activeSection, visibleSections }: NavigationProps) {
+export default function Navigation({
+  onNavigate,
+  activeSection,
+  visibleSections,
+  scrollProgress = 0,
+}: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const navItems = portfolioContent.navigation.filter((item) =>
@@ -20,7 +26,7 @@ export default function Navigation({ onNavigate, activeSection, visibleSections 
 
   return (
     <nav className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5">
-      <div className="surface-nav mx-auto max-w-7xl rounded-2xl">
+      <div className="surface-nav mx-auto max-w-7xl overflow-hidden rounded-2xl">
         <div className="flex items-center justify-between gap-3 px-3 py-2.5 sm:px-4 sm:py-3">
           <button
             onClick={() => onNavigate('home')}
@@ -103,6 +109,14 @@ export default function Navigation({ onNavigate, activeSection, visibleSections 
             </div>
           </div>
         )}
+
+        <div className="h-[2px] w-full bg-border/40">
+          <div
+            className="h-full bg-primary/80 transition-[width] duration-300 ease-out"
+            style={{ width: `${scrollProgress}%` }}
+            aria-hidden
+          />
+        </div>
       </div>
     </nav>
   );

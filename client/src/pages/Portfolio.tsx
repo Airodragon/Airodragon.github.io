@@ -13,6 +13,7 @@ import { NavSectionId, portfolioContent } from '@/lib/portfolio-content';
 
 function PortfolioSections() {
   const [activeSection, setActiveSection] = useState<NavSectionId>('home');
+  const [scrollProgress, setScrollProgress] = useState(0);
   const {
     preferences: { sectionVisibility },
   } = useUiCustomizer();
@@ -37,6 +38,14 @@ function PortfolioSections() {
 
   useEffect(() => {
     const handleScroll = () => {
+      const totalScrollableHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const progress =
+        totalScrollableHeight > 0
+          ? Math.min(100, Math.max(0, (window.scrollY / totalScrollableHeight) * 100))
+          : 0;
+      setScrollProgress(progress);
+
       const scrollPosition = window.scrollY + window.innerHeight / 3;
 
       for (const section of visibleSections) {
@@ -51,6 +60,7 @@ function PortfolioSections() {
       }
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [visibleSections]);
@@ -66,8 +76,13 @@ function PortfolioSections() {
       <div className="ui-gradient-backdrop pointer-events-none fixed inset-0 -z-20" />
       <div className="ui-grid-backdrop pointer-events-none fixed inset-0 -z-10" />
 
-      <Navigation onNavigate={scrollToSection} activeSection={activeSection} visibleSections={visibleSections} />
-      <main>
+      <Navigation
+        onNavigate={scrollToSection}
+        activeSection={activeSection}
+        visibleSections={visibleSections}
+        scrollProgress={scrollProgress}
+      />
+      <main className="relative z-10">
         <Hero onNavigate={scrollToSection} />
         {sectionVisibility.about && <About />}
         {sectionVisibility.experience && <Experience />}

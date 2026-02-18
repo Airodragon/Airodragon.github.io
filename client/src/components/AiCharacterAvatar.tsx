@@ -5,6 +5,9 @@ export default function AiCharacterAvatar() {
       data-testid="card-ai-character"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,hsl(var(--primary)/0.18),transparent_44%),radial-gradient(circle_at_82%_82%,hsl(var(--primary)/0.14),transparent_46%)]" />
+      <div className="absolute right-4 top-4 z-20 rounded-full border border-primary/30 bg-primary/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary">
+        AI persona
+      </div>
 
       <svg
         viewBox="0 0 320 220"
@@ -46,6 +49,15 @@ export default function AiCharacterAvatar() {
         <line x1="60" y1="96" x2="36" y2="96" stroke="hsl(var(--primary) / 0.8)" strokeWidth="3" strokeLinecap="round" />
         <line x1="260" y1="96" x2="284" y2="96" stroke="hsl(var(--primary) / 0.8)" strokeWidth="3" strokeLinecap="round" />
       </svg>
+
+      <div className="relative z-10 mt-3 grid grid-cols-2 gap-2">
+        <div className="rounded-lg border border-border/70 bg-background/70 px-2 py-1.5 text-[10px] uppercase tracking-wider text-muted-foreground">
+          clean UI systems
+        </div>
+        <div className="rounded-lg border border-border/70 bg-background/70 px-2 py-1.5 text-[10px] uppercase tracking-wider text-muted-foreground">
+          scalable frontend
+        </div>
+      </div>
 
       <figcaption className="relative z-10 mt-2 flex items-center justify-between text-[11px] uppercase tracking-wider text-muted-foreground">
         <span>Custom AI Character</span>

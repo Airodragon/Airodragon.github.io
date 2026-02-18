@@ -233,6 +233,7 @@
   --ui-card-hover-shadow: 0 22px 38px -24px hsl(var(--foreground) / 0.35);
   --ui-card-hover-translate: -3px;
   --ui-card-blur: 8px;
+  --ui-focus-ring: 0 0 0 3px hsl(var(--ring) / 0.26);
 }
 
 .dark {
@@ -320,6 +321,12 @@
   padding-block: var(--ui-section-space);
 }
 
+.heading-display {
+  font-family: var(--font-display), Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+  letter-spacing: -0.022em;
+  line-height: 1.04;
+}
+
 .hero-shell {
   min-height: max(680px, calc(100vh - 4.25rem));
 }
@@ -334,6 +341,7 @@
 }
 
 .surface-card {
+  position: relative;
   background-color: var(--ui-card-bg) !important;
   border-color: var(--ui-card-border) !important;
   border-radius: var(--ui-radius) !important;
@@ -344,6 +352,28 @@
     border-color var(--ui-motion-ms) ease,
     box-shadow var(--ui-motion-ms) ease,
     background-color var(--ui-motion-ms) ease;
+}
+
+.surface-card::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    hsl(var(--foreground) / 0.04) 0%,
+    transparent 40%
+  );
+  opacity: 0.45;
+}
+
+.dark .surface-card::before {
+  background: linear-gradient(
+    180deg,
+    hsl(var(--foreground) / 0.06) 0%,
+    transparent 42%
+  );
 }
 
 .surface-card:hover {
@@ -360,6 +390,13 @@
   background-color: var(--ui-nav-bg);
   backdrop-filter: blur(16px) saturate(140%);
   box-shadow: var(--ui-nav-shadow);
+}
+
+a:focus-visible,
+button:focus-visible,
+[role='button']:focus-visible {
+  box-shadow: var(--ui-focus-ring);
+  border-radius: 0.75rem;
 }
 
 .ui-gradient-backdrop {
@@ -401,6 +438,18 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
     text-rendering: optimizeLegibility;
+    font-feature-settings: "cv01", "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

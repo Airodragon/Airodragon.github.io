@@ -85,9 +85,9 @@ export default function CustomizerPanel() {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button
-          variant="default"
+          variant="outline"
           size="sm"
-          className="fixed bottom-6 right-6 z-50 gap-2 rounded-full px-4 py-5 shadow-xl"
+          className="fixed bottom-6 right-6 z-50 gap-2 rounded-full border-border/70 bg-background/85 px-4 py-5 shadow-xl backdrop-blur-xl"
           data-testid="button-customizer-open"
         >
           <SlidersHorizontal className="h-4 w-4" />
@@ -99,7 +99,7 @@ export default function CustomizerPanel() {
         className="w-full border-l border-border/70 bg-background/95 p-0 backdrop-blur-xl sm:max-w-md"
       >
         <div className="flex h-full flex-col">
-          <SheetHeader className="border-b border-border/60 px-6 py-5">
+          <SheetHeader className="border-b border-border/60 bg-gradient-to-b from-primary/10 to-transparent px-6 py-5">
             <SheetTitle className="flex items-center gap-2">
               <PanelRightOpen className="h-5 w-5 text-primary" />
               UI Customizer
@@ -111,14 +111,14 @@ export default function CustomizerPanel() {
 
           <div className="flex-1 overflow-y-auto px-6 py-6">
             <Tabs defaultValue="theme" className="space-y-6">
-              <TabsList className="grid w-full grid-cols-3">
+              <TabsList className="grid w-full grid-cols-3 rounded-xl border border-border/70 bg-background/75 p-1">
                 <TabsTrigger value="theme">Theme</TabsTrigger>
                 <TabsTrigger value="layout">Layout</TabsTrigger>
                 <TabsTrigger value="content">Sections</TabsTrigger>
               </TabsList>
 
-              <TabsContent value="theme" className="space-y-6">
-                <div className="space-y-2">
+              <TabsContent value="theme" className="space-y-4">
+                <div className="space-y-2 rounded-xl border border-border/70 bg-background/70 p-4">
                   <Label>Accent preset</Label>
                   <Select
                     value={preferences.accentPreset}
@@ -147,7 +147,7 @@ export default function CustomizerPanel() {
                   </Select>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-3 rounded-xl border border-border/70 bg-background/70 p-4">
                   <div className="flex items-center justify-between">
                     <Label htmlFor="accent-hue-slider">Accent hue</Label>
                     <span className="text-xs text-muted-foreground">{preferences.accentHue}&deg;</span>
@@ -163,7 +163,7 @@ export default function CustomizerPanel() {
                   />
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2 rounded-xl border border-border/70 bg-background/70 p-4">
                   <Label>Card style</Label>
                   <Select
                     value={preferences.cardStyle}
@@ -183,8 +183,8 @@ export default function CustomizerPanel() {
                 </div>
               </TabsContent>
 
-              <TabsContent value="layout" className="space-y-6">
-                <div className="space-y-2">
+              <TabsContent value="layout" className="space-y-4">
+                <div className="space-y-2 rounded-xl border border-border/70 bg-background/70 p-4">
                   <Label>Section density</Label>
                   <Select
                     value={preferences.density}
@@ -203,7 +203,7 @@ export default function CustomizerPanel() {
                   </Select>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-3 rounded-xl border border-border/70 bg-background/70 p-4">
                   <div className="flex items-center justify-between">
                     <Label htmlFor="radius-slider">Roundness</Label>
                     <span className="text-xs text-muted-foreground">{preferences.radius}px</span>
@@ -219,7 +219,7 @@ export default function CustomizerPanel() {
                   />
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2 rounded-xl border border-border/70 bg-background/70 p-4">
                   <Label>Animation intensity</Label>
                   <Select
                     value={preferences.motion}
@@ -238,7 +238,7 @@ export default function CustomizerPanel() {
                   </Select>
                 </div>
 
-                <div className="flex items-center justify-between rounded-lg border border-border/70 p-3">
+                <div className="flex items-center justify-between rounded-xl border border-border/70 bg-background/70 p-4">
                   <div>
                     <p className="text-sm font-medium">Gradient background</p>
                     <p className="text-xs text-muted-foreground">
@@ -257,7 +257,7 @@ export default function CustomizerPanel() {
                 {customizableSections.map((section) => (
                   <div
                     key={section}
-                    className="flex items-center justify-between rounded-lg border border-border/70 p-3"
+                    className="flex items-center justify-between rounded-xl border border-border/70 bg-background/70 p-3"
                   >
                     <div className="flex items-center gap-2">
                       <Palette className="h-4 w-4 text-primary" />
