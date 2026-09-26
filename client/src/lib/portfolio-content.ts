@@ -44,7 +44,7 @@ export const portfolioContent = {
     email: 'mihir190801@gmail.com',
     phone: '+91 8700993995',
     timezone: 'IST (UTC+5:30)',
-    resumeUrl: '/Mihir_Srivastava.pdf',
+    resumeUrl: '/Mihir_Srivastava_Resume.pdf',
     availability: 'Open to software engineering opportunities and strong product collaborations.',
   },
   navigation: [

@@ -1,7 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import CustomizerPanel from '@/components/CustomizerPanel';
-import { UiCustomizerProvider, useUiCustomizer } from '@/components/UiCustomizerProvider';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -9,23 +7,16 @@ import Experience from '@/components/Experience';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import Reveal from '@/components/Reveal';
+import MagneticCursor from '@/components/MagneticCursor';
 import { NavSectionId, portfolioContent } from '@/lib/portfolio-content';
 
 function PortfolioSections() {
   const [activeSection, setActiveSection] = useState<NavSectionId>('home');
   const [scrollProgress, setScrollProgress] = useState(0);
-  const {
-    preferences: { sectionVisibility },
-  } = useUiCustomizer();
-  const isSectionVisible = (section: NavSectionId) => {
-    if (section === 'home') {
-      return true;
-    }
-    return sectionVisibility[section];
-  };
   const visibleSections = useMemo(
-    () => portfolioContent.navigation.filter((item) => isSectionVisible(item.id)).map((item) => item.id),
-    [sectionVisibility],
+    () => portfolioContent.navigation.map((item) => item.id),
+    [],
   );
 
   const scrollToSection = (id: NavSectionId) => {
@@ -61,21 +52,20 @@ function PortfolioSections() {
     };
 
     handleScroll();
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [visibleSections]);
 
+  // Lock brand to dark red system
   useEffect(() => {
-    if (!isSectionVisible(activeSection)) {
-      setActiveSection('home');
-    }
-  }, [activeSection, sectionVisibility]);
+    document.documentElement.classList.add('dark');
+    document.documentElement.style.colorScheme = 'dark';
+    localStorage.setItem('theme', 'dark');
+  }, []);
 
   return (
-    <div className="portfolio-root min-h-screen bg-background text-foreground transition-colors duration-300">
-      <div className="ui-gradient-backdrop pointer-events-none fixed inset-0 -z-20" />
-      <div className="ui-grid-backdrop pointer-events-none fixed inset-0 -z-10" />
-
+    <div className="portfolio-root min-h-screen bg-background text-foreground">
+      <MagneticCursor />
       <Navigation
         onNavigate={scrollToSection}
         activeSection={activeSection}
@@ -84,13 +74,23 @@ function PortfolioSections() {
       />
       <main className="relative z-10">
         <Hero onNavigate={scrollToSection} />
-        {sectionVisibility.about && <About />}
-        {sectionVisibility.experience && <Experience />}
-        {sectionVisibility.projects && <Projects />}
-        {sectionVisibility.contact && <Contact />}
+        <div className="relative overflow-hidden bg-background">
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_rgba(227,28,19,0.14),_transparent_55%)]" />
+          <Reveal>
+            <About />
+          </Reveal>
+          <Reveal delay={0.05}>
+            <Experience />
+          </Reveal>
+          <Reveal delay={0.05}>
+            <Projects />
+          </Reveal>
+          <Reveal delay={0.05}>
+            <Contact />
+          </Reveal>
+        </div>
       </main>
       <Footer />
-      <CustomizerPanel />
     </div>
   );
 }
@@ -98,11 +98,7 @@ function PortfolioSections() {
 export default function Portfolio() {
   return (
     <ThemeProvider>
-      <UiCustomizerProvider>
-        <div className="min-h-screen">
-          <PortfolioSections />
-        </div>
-      </UiCustomizerProvider>
+      <PortfolioSections />
     </ThemeProvider>
   );
 }

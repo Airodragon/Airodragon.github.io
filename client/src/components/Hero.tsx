@@ -1,151 +1,184 @@
-import { ArrowRight, Code, Github, Globe, Linkedin, Mail, Sparkles } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { NavSectionId, portfolioContent, SocialLink } from '@/lib/portfolio-content';
-import AiCharacterAvatar from '@/components/AiCharacterAvatar';
+import { useEffect, useRef } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
+import { NavSectionId, portfolioContent } from '@/lib/portfolio-content';
+import HeroCanvas from '@/components/HeroCanvas';
+
+const PORTRAIT = '/portrait.png';
+const BRAND_RED = '#FF0000';
 
 interface HeroProps {
   onNavigate: (section: NavSectionId) => void;
 }
 
-const iconBySocialId: Record<SocialLink['id'], typeof Mail> = {
-  email: Mail,
-  portfolio: Globe,
-  github: Github,
-  linkedin: Linkedin,
-  leetcode: Code,
-};
-
 export default function Hero({ onNavigate }: HeroProps) {
-  const { profile, highlights, socials, skills } = portfolioContent;
-  const heroStack = skills
-    .find((category) => category.category === 'Frameworks / Technologies')
-    ?.items.slice(0, 5) ?? ['React', 'Next.js', 'Node.js', 'Express.js', 'Redux'];
-  const currentRoleHighlight = highlights.find((item) => item.label === 'Current Role');
+  const { profile } = portfolioContent;
+  const firstName = profile.name.split(' ')[0] ?? profile.name;
+  const portraitRef = useRef<HTMLDivElement>(null);
+  const widePortraitRef = useRef<HTMLImageElement>(null);
+  const reduce = useReducedMotion();
+
+  useEffect(() => {
+    if (reduce) return;
+
+    let raf = 0;
+    const target = { x: 0, y: 0 };
+    const current = { x: 0, y: 0 };
+
+    const onMove = (e: PointerEvent) => {
+      const nx = (e.clientX / window.innerWidth - 0.5) * 2;
+      const ny = (e.clientY / window.innerHeight - 0.5) * 2;
+      const wide = window.innerWidth > 1250;
+      target.x = nx * (wide ? 10 : 12);
+      target.y = ny * (wide ? 6 : 8);
+    };
+
+    const tick = () => {
+      current.x += (target.x - current.x) * 0.08;
+      current.y += (target.y - current.y) * 0.08;
+      const wide = window.innerWidth > 1250;
+      const compact = portraitRef.current;
+      const wideImg = widePortraitRef.current;
+
+      if (!wide && compact) {
+        compact.style.transform = `translate3d(${current.x}px, ${current.y}px, 0) scale(1.06)`;
+      }
+      if (wide && wideImg) {
+        wideImg.style.transform = `translate3d(${current.x}px, ${current.y}px, 0)`;
+      }
+
+      raf = requestAnimationFrame(tick);
+    };
+
+    window.addEventListener('pointermove', onMove, { passive: true });
+    raf = requestAnimationFrame(tick);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('pointermove', onMove);
+    };
+  }, [reduce]);
 
   return (
-    <section id="home" className="hero-shell section-shell relative flex items-center pt-28 sm:pt-32">
-      <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-        <div>
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary shadow-sm">
-            <Sparkles className="h-3.5 w-3.5" />
-            {profile.role}
-          </div>
+    <section
+      id="home"
+      className="hero-luxury relative h-[100svh] min-h-[640px] w-full overflow-hidden"
+      style={{ backgroundColor: BRAND_RED }}
+      data-testid="section-hero"
+    >
+      {/* ≤1250: full-bleed portrait + atmosphere */}
+      <div className="absolute inset-0 z-0 overflow-hidden bg-[#FF0000] min-[1251px]:hidden">
+        <div ref={portraitRef} className="hero-portrait-track absolute will-change-transform">
+          <img
+            src={PORTRAIT}
+            alt=""
+            className="hero-portrait-img h-full w-full"
+            draggable={false}
+          />
+        </div>
+      </div>
 
-          <h1 className="heading-display text-balance text-4xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-            {profile.name}
-          </h1>
-          <p className="mt-4 max-w-2xl text-balance text-lg text-foreground/90 sm:text-2xl">
-            {profile.headline}
-          </p>
-          <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground sm:text-base">{profile.summary}</p>
+      <div
+        className="pointer-events-none absolute inset-0 z-[1] min-[1251px]:hidden"
+        style={{
+          maskImage:
+            'radial-gradient(ellipse 55% 60% at 50% 38%, transparent 0%, transparent 45%, black 78%)',
+          WebkitMaskImage:
+            'radial-gradient(ellipse 55% 60% at 50% 38%, transparent 0%, transparent 45%, black 78%)',
+        }}
+      >
+        <HeroCanvas className="opacity-80" />
+      </div>
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[42%] bg-gradient-to-t from-black/65 via-black/25 to-transparent min-[1251px]:hidden" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[min(100%,28rem)] bg-gradient-to-r from-black/45 via-black/15 to-transparent min-[1251px]:hidden" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-28 bg-gradient-to-b from-black/30 to-transparent min-[1251px]:hidden" />
 
-          <div className="mt-5 flex flex-wrap items-center gap-2 text-xs sm:text-sm">
-            {currentRoleHighlight?.value && (
-              <span className="inline-flex items-center gap-1 rounded-full border border-border/70 bg-background/80 px-3 py-1 text-muted-foreground">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                {currentRoleHighlight.value}
-              </span>
-            )}
-            <span className="inline-flex items-center rounded-full border border-border/70 bg-background/80 px-3 py-1 text-muted-foreground">
-              {profile.location}
-            </span>
-          </div>
+      {/*
+        Shared hero stage:
+        - ≤1250: absolute bottom-left copy over full-bleed image
+        - >1250: 2-col grid, vertically centered copy + tall right portrait
+      */}
+      <div className="hero-stage relative z-10 h-full">
+        <div className="hero-copy-wrap">
+          <motion.div
+            className="pointer-events-auto hero-copy"
+            initial={reduce ? false : { opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+          >
+            <motion.p
+              className="hero-greeting text-[0.7rem] font-medium uppercase tracking-[0.35em] text-white/85 sm:text-xs"
+              initial={reduce ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+            >
+              Hi, I&apos;m
+            </motion.p>
+            <motion.h1
+              className="hero-script mt-1 text-6xl leading-none text-white sm:text-7xl md:text-8xl"
+              data-testid="text-hero-name"
+              initial={reduce ? false : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {firstName}
+            </motion.h1>
+            <motion.p
+              className="hero-bio mt-5 text-sm leading-relaxed text-white/88 sm:text-[0.95rem]"
+              initial={reduce ? false : { opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.5 }}
+            >
+              Full-stack engineer crafting products with Node.js, React, Next.js &amp; OpenAPI.
+              Leading OpenAPI Visual Design at Apiwiz.
+              Previously shipped Jio Loans &amp; Jio Finance at Reliance Jio.
+            </motion.p>
 
-          <div className="mt-6 flex flex-wrap gap-2">
-            {heroStack.map((item) => (
-              <Badge
-                key={item}
-                variant="outline"
-                className="rounded-full border-border/70 bg-background/80 px-3 py-1 text-[11px] uppercase tracking-wide text-muted-foreground"
+            <motion.div
+              className="mt-7 flex flex-wrap items-center gap-3"
+              initial={reduce ? false : { opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.65 }}
+            >
+              <a
+                href={profile.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-magnetic
+                data-testid="button-view-resume"
+                className="hero-btn-solid inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-neutral-900 transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98]"
               >
-                {item}
-              </Badge>
-            ))}
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button
-              size="lg"
-              onClick={() => onNavigate('contact')}
-              className="group gap-2 px-8 shadow-lg shadow-primary/20"
-              data-testid="button-get-in-touch"
-            >
-              Get In Touch
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              asChild
-              data-testid="button-view-resume"
-            >
-              <a href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
-                View Resume
+                Resume
+                <ArrowUpRight className="h-4 w-4" strokeWidth={2.25} />
               </a>
-            </Button>
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-2.5">
-            {socials.map((social) => {
-              const Icon = iconBySocialId[social.id];
-              return (
-                <Button
-                  key={social.id}
-                  variant="outline"
-                  size="icon"
-                  className="rounded-xl bg-background/75"
-                  asChild
-                  data-testid={`link-${social.id}`}
-                >
-                  <a
-                    href={social.href}
-                    target={social.id === 'email' ? undefined : '_blank'}
-                    rel={social.id === 'email' ? undefined : 'noopener noreferrer'}
-                    aria-label={social.label}
-                  >
-                    <Icon className="h-5 w-5" />
-                  </a>
-                </Button>
-              );
-            })}
-          </div>
-
-          <p className="mt-5 text-sm text-muted-foreground">
-            <span className="font-medium text-foreground/90">Availability:</span> {profile.availability}
-          </p>
+              <button
+                type="button"
+                onClick={() => onNavigate('contact')}
+                data-magnetic
+                data-testid="button-get-in-touch"
+                className="hero-btn-glass inline-flex items-center gap-2 rounded-full border border-white/55 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white backdrop-blur-[20px] transition-transform duration-200 hover:scale-[1.03] hover:bg-white/18 active:scale-[0.98]"
+              >
+                Let&apos;s Talk
+              </button>
+            </motion.div>
+          </motion.div>
         </div>
 
-        <Card className="surface-card ui-animate border-border/70 shadow-xl lg:ml-4">
-          <CardContent className="space-y-7 p-6">
-            <AiCharacterAvatar />
-
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">At a glance</p>
-              <p className="mt-2 text-sm text-muted-foreground">{profile.subheadline}</p>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-              {highlights.map((item) => (
-                <div
-                  key={item.label}
-                  className="rounded-xl border border-border/70 bg-background/70 p-4"
-                  data-testid={`card-highlight-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
-                >
-                  <p className="text-xs uppercase tracking-wide text-muted-foreground">{item.label}</p>
-                  <p className="mt-2 text-xl font-semibold text-foreground">{item.value}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="rounded-xl border border-border/70 bg-background/70 p-4">
-              <p className="text-xs uppercase tracking-wide text-muted-foreground">Location & Timezone</p>
-              <p className="mt-2 text-sm text-foreground">{profile.location}</p>
-              <p className="text-sm text-muted-foreground">{profile.timezone}</p>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="hero-wide-portrait">
+          <motion.div
+            className="hero-wide-portrait-inner"
+            initial={reduce ? false : { opacity: 0, x: 36 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+          >
+            <img
+              ref={widePortraitRef}
+              src={PORTRAIT}
+              alt={`${profile.name} portrait`}
+              className="hero-wide-img will-change-transform"
+              draggable={false}
+            />
+          </motion.div>
+        </div>
       </div>
     </section>
   );
