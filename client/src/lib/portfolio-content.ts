@@ -154,14 +154,26 @@ export const portfolioContent = {
   ] as const satisfies ReadonlyArray<ExperienceItem>,
   projects: [
     {
-      title: 'Cloud Desktop Environment',
+      title: 'LifeOS',
       description:
-        'Created a Linux-based cloud desktop interface with real-time virtual access, allowing users to interact with remote Linux environments using a secure MERN stack.',
-      tech: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Linux'],
+        'Personal finance and life management PWA with net worth, budgets, investments, AI expense categorization, and biometric auth.',
+      tech: ['Next.js', 'TypeScript', 'Prisma', 'Neon', 'NextAuth', 'Gemini'],
       type: 'Personal',
       company: 'Personal Project',
-      repoUrl: 'https://github.com/Airodragon',
-      liveLabel: 'View Source',
+      liveUrl: 'https://lifeos-rho-six.vercel.app',
+      repoUrl: 'https://github.com/Airodragon/lifeos',
+      liveLabel: 'Live Preview',
+    },
+    {
+      title: 'PortalForge AI',
+      description:
+        'AI-powered developer portal builder — turn a prompt or OpenAPI spec into API docs, playground, SDK examples, and changelog in seconds.',
+      tech: ['Next.js', 'TypeScript', 'OpenAI', 'Supabase', 'OpenAPI'],
+      type: 'Personal',
+      company: 'Personal Project',
+      liveUrl: 'https://portalforge.vercel.app',
+      repoUrl: 'https://github.com/Airodragon/portalforge',
+      liveLabel: 'Live Preview',
     },
     {
       title: 'API Design & Builder Platform',
@@ -174,6 +186,17 @@ export const portfolioContent = {
       liveLabel: 'Visit Platform',
     },
     {
+      title: 'Lo-Fi WFH Player',
+      description:
+        'Shared lo-fi radio for focus sessions — live rooms, vote-weighted queue, chat, presence, and YouTube/Spotify playback.',
+      tech: ['React', 'Vite', 'Express', 'WebSockets', 'Turso'],
+      type: 'Personal',
+      company: 'Personal Project',
+      liveUrl: 'https://lofi-wfh-player.vercel.app',
+      repoUrl: 'https://github.com/Airodragon/lofi-wfh-player',
+      liveLabel: 'Live Preview',
+    },
+    {
       title: 'Jio Finance Platform',
       description:
         'Contributed to official Jio Finance and Jio Loans experiences with CMS-backed architecture and cross-channel delivery.',
@@ -182,6 +205,38 @@ export const portfolioContent = {
       company: 'Reliance Jio',
       liveUrl: 'https://www.jio.com/jiofinance',
       liveLabel: 'Visit Platform',
+    },
+    {
+      title: 'CalTrack',
+      description:
+        'Calorie and fitness tracking app with Firebase auth, progress charts, and a mobile-friendly PWA experience.',
+      tech: ['React', 'Vite', 'Firebase', 'Recharts', 'PWA'],
+      type: 'Personal',
+      company: 'Personal Project',
+      liveUrl: 'https://caltrack-eight.vercel.app',
+      repoUrl: 'https://github.com/Airodragon/caltrack',
+      liveLabel: 'Live Preview',
+    },
+    {
+      title: 'Interview Code Editor',
+      description:
+        'In-browser interview coding environment with Monaco editor, live preview, and a resizable dual-pane workspace.',
+      tech: ['React', 'Vite', 'Monaco Editor'],
+      type: 'Personal',
+      company: 'Personal Project',
+      liveUrl: 'https://airodragon.github.io/interview-editor-react/',
+      repoUrl: 'https://github.com/Airodragon/interview-editor-react',
+      liveLabel: 'Live Preview',
+    },
+    {
+      title: 'Cloud Desktop Environment',
+      description:
+        'Created a Linux-based cloud desktop interface with real-time virtual access, allowing users to interact with remote Linux environments using a secure MERN stack.',
+      tech: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Linux'],
+      type: 'Personal',
+      company: 'Personal Project',
+      repoUrl: 'https://github.com/Airodragon',
+      liveLabel: 'View Source',
     },
   ] as const satisfies ReadonlyArray<ProjectItem>,
 };
