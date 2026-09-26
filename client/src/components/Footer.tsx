@@ -5,14 +5,14 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border/70 px-6 py-7">
+    <footer className="border-t border-white/10 px-6 py-8">
       <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-2 text-center sm:flex-row sm:text-left">
         <p className="text-sm text-muted-foreground" data-testid="text-copyright">
           &copy; {year} {profile.name}. All rights reserved.
         </p>
         <div className="text-sm text-muted-foreground" data-testid="text-location">
           <span>{profile.location}</span>
-          <span className="mx-2 opacity-50">•</span>
+          <span className="mx-2 opacity-40">·</span>
           <span>Built with React + TypeScript</span>
         </div>
       </div>

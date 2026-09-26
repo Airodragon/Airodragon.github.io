@@ -40,6 +40,8 @@ export const portfolioContent = {
     subheadline: 'Specialized in React, Next.js, Node.js, and API-centric product development.',
     summary:
       'I build performant and user-focused applications across frontend and backend systems. Currently leading API Design module development at Apiwiz, with prior experience delivering fintech products at Reliance Jio Platforms.',
+    heroBio:
+      'Full-stack engineer crafting products with Node.js, React, Next.js & OpenAPI. Leading OpenAPI Visual Design at Apiwiz. Previously shipped Jio Loans & Jio Finance at Reliance Jio.',
     location: 'New Delhi, India',
     email: 'mihir190801@gmail.com',
     phone: '+91 8700993995',

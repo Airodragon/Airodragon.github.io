@@ -32,7 +32,7 @@
 
   --sidebar-border: 214 32% 88%;
 
-  --sidebar-primary: 3 84% 48%;
+  --sidebar-primary: 0 100% 50%;
 
   --sidebar-primary-foreground: 0 0% 98%;
 
@@ -40,7 +40,7 @@
 
   --sidebar-accent-foreground: 222 47% 11%;
 
-  --sidebar-ring: 3 84% 48%;
+  --sidebar-ring: 0 100% 50%;
 
   --popover: 0 0% 98%;
 
@@ -48,7 +48,7 @@
 
   --popover-border: 214 32% 89%;
 
-  --primary: 3 84% 48%;
+  --primary: 0 100% 50%;
 
   --primary-foreground: 0 0% 100%;
 
@@ -60,20 +60,20 @@
 
   --muted-foreground: 215 16% 47%;
 
-  --accent: 3 70% 96%;
+  --accent: 0 70% 96%;
 
-  --accent-foreground: 3 70% 28%;
+  --accent-foreground: 0 70% 28%;
 
   --destructive: 0 84% 60%;
 
   --destructive-foreground: 0 0% 98%;
 
   --input: 214 32% 75%;
-  --ring: 3 84% 48%;
-  --chart-1: 3 84% 48%;
-  --chart-2: 10 80% 55%;
-  --chart-3: 0 70% 45%;
-  --chart-4: 20 75% 50%;
+  --ring: 0 100% 50%;
+  --chart-1: 0 100% 50%;
+  --chart-2: 0 80% 45%;
+  --chart-3: 0 70% 40%;
+  --chart-4: 10 75% 50%;
   --chart-5: 350 65% 42%;
 
   --font-sans: Outfit, sans-serif;
@@ -81,7 +81,8 @@
   --font-mono: Menlo, monospace;
   --font-display: Outfit, sans-serif;
   --font-script: 'Dancing Script', cursive;
-  --character-bg: #FF0000;
+  --brand-red: #FA0101;
+  --character-bg: var(--brand-red);
   --radius: .5rem; /* 8px */
   --shadow-2xs: 0px 1px 2px 0px hsl(214 32% 50% / 0.05);
   --shadow-xs: 0px 1px 3px 0px hsl(214 32% 50% / 0.08);
@@ -153,7 +154,7 @@
 
   --sidebar-border: 0 0% 14%;
 
-  --sidebar-primary: 3 84% 52%;
+  --sidebar-primary: 0 100% 50%;
 
   --sidebar-primary-foreground: 0 0% 100%;
 
@@ -161,7 +162,7 @@
 
   --sidebar-accent-foreground: 0 0% 98%;
 
-  --sidebar-ring: 3 84% 52%;
+  --sidebar-ring: 0 100% 50%;
 
   --popover: 0 0% 9%;
 
@@ -169,7 +170,7 @@
 
   --popover-border: 0 0% 18%;
 
-  --primary: 3 84% 52%;
+  --primary: 0 100% 50%;
 
   --primary-foreground: 0 0% 100%;
 
@@ -177,11 +178,11 @@
 
   --secondary-foreground: 0 0% 98%;
 
-  --muted: 0 0% 12%;
+  --muted: 0 0% 10%;
 
   --muted-foreground: 0 0% 68%;
 
-  --accent: 3 40% 14%;
+  --accent: 0 40% 12%;
 
   --accent-foreground: 0 0% 98%;
 
@@ -190,11 +191,11 @@
   --destructive-foreground: 0 0% 98%;
 
   --input: 0 0% 35%;
-  --ring: 3 84% 52%;
-  --chart-1: 3 84% 55%;
-  --chart-2: 10 80% 58%;
-  --chart-3: 0 70% 48%;
-  --chart-4: 20 75% 52%;
+  --ring: 0 100% 50%;
+  --chart-1: 0 100% 50%;
+  --chart-2: 0 80% 55%;
+  --chart-3: 0 70% 45%;
+  --chart-4: 10 75% 52%;
   --chart-5: 350 65% 48%;
 
   --shadow-2xs: 0px 1px 2px 0px hsl(222 47% 5% / 0.30);
@@ -218,32 +219,32 @@
 }
 
 :root {
-  --ui-accent-hue: 3;
-  --ui-radius: 18px;
+  --ui-accent-hue: 0;
+  --ui-radius: 4px;
   --ui-motion-ms: 260ms;
   --ui-section-space: 6.5rem;
   --ui-grid-opacity: 0.34;
   --ui-gradient-opacity: 1;
-  --ui-page-bg: 220 30% 98%;
-  --ui-page-bg-alt: 220 28% 96%;
+  --ui-page-bg: 0 0% 5%;
+  --ui-page-bg-alt: 0 0% 7%;
   --ui-nav-bg: hsl(var(--background) / 0.82);
   --ui-nav-border: hsl(var(--border) / 0.7);
   --ui-nav-shadow: 0 14px 32px -24px hsl(var(--foreground) / 0.28);
-  --ui-card-bg: hsl(var(--card) / 0.74);
-  --ui-card-border: hsl(var(--card-border) / 0.78);
-  --ui-card-shadow: 0 14px 30px -22px hsl(var(--foreground) / 0.28);
-  --ui-card-hover-shadow: 0 22px 38px -24px hsl(var(--foreground) / 0.35);
-  --ui-card-hover-translate: -3px;
-  --ui-card-blur: 8px;
+  --ui-card-bg: hsl(0 0% 7% / 0.92);
+  --ui-card-border: hsl(0 0% 100% / 0.1);
+  --ui-card-shadow: none;
+  --ui-card-hover-shadow: none;
+  --ui-card-hover-translate: 0px;
+  --ui-card-blur: 0px;
   --ui-focus-ring: 0 0 0 3px hsl(var(--ring) / 0.26);
 }
 
 .dark {
-  --ui-page-bg: 222 32% 10%;
-  --ui-page-bg-alt: 222 30% 12%;
+  --ui-page-bg: 0 0% 5%;
+  --ui-page-bg-alt: 0 0% 7%;
   --ui-nav-bg: hsl(var(--background) / 0.72);
   --ui-nav-border: hsl(var(--border) / 0.72);
-  --ui-nav-shadow: 0 16px 36px -24px hsl(220 60% 2% / 0.72);
+  --ui-nav-shadow: 0 16px 36px -24px hsl(0 0% 0% / 0.72);
 }
 
 [data-density='compact'] {
@@ -311,6 +312,7 @@
   position: relative;
   overflow-x: clip;
   background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgb(250 1 1 / 0.1), transparent 55%),
     linear-gradient(
       180deg,
       hsl(var(--ui-page-bg)) 0%,
@@ -321,6 +323,15 @@
 .section-shell {
   padding-inline: clamp(1rem, 2.8vw, 2rem);
   padding-block: var(--ui-section-space);
+}
+
+.section-band {
+  background: hsl(0 0% 4%);
+  border-block: 1px solid hsl(0 0% 100% / 0.06);
+}
+
+.editorial-panel {
+  position: relative;
 }
 
 .heading-display {
@@ -334,7 +345,7 @@
 }
 
 .hero-luxury {
-  --character-bg: #FF0000;
+  --character-bg: var(--brand-red);
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
@@ -392,7 +403,7 @@
  * >1250: editorial 2-column hero
  * - Copy vertically centered on the left
  * - Portrait height-driven (full viewport) on the right — bigger, no crop
- * - Plain #FF0000 field, no overlays
+ * - Plain #FA0101 field, no overlays
  */
 @media (min-width: 1251px) {
   .hero-stage {
@@ -548,35 +559,20 @@
   background-color: var(--ui-card-bg) !important;
   border-color: var(--ui-card-border) !important;
   border-radius: var(--ui-radius) !important;
-  box-shadow: var(--ui-card-shadow) !important;
-  backdrop-filter: saturate(140%) blur(var(--ui-card-blur));
+  box-shadow: none !important;
+  backdrop-filter: none;
   transition:
     transform var(--ui-motion-ms) ease,
     border-color var(--ui-motion-ms) ease,
-    box-shadow var(--ui-motion-ms) ease,
     background-color var(--ui-motion-ms) ease;
 }
 
 .surface-card::before {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(
-    180deg,
-    hsl(var(--foreground) / 0.04) 0%,
-    transparent 40%
-  );
-  opacity: 0.45;
+  display: none;
 }
 
 .dark .surface-card::before {
-  background: linear-gradient(
-    180deg,
-    hsl(var(--foreground) / 0.06) 0%,
-    transparent 42%
-  );
+  display: none;
 }
 
 .surface-card:hover {

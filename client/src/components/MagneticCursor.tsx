@@ -12,6 +12,7 @@ export default function MagneticCursor({ enabled = true }: MagneticCursorProps) 
   const ring = useRef({ x: 0, y: 0 });
   const hovering = useRef(false);
   const raf = useRef(0);
+  const running = useRef(false);
   const [visible, setVisible] = useState(false);
   const [reduced, setReduced] = useState(false);
   const [finePointer, setFinePointer] = useState(false);
@@ -35,20 +36,13 @@ export default function MagneticCursor({ enabled = true }: MagneticCursorProps) 
   useEffect(() => {
     if (!enabled || reduced || !finePointer) return;
 
-    const onMove = (e: PointerEvent) => {
-      pos.current = { x: e.clientX, y: e.clientY };
-      setVisible(true);
-      const target = e.target as Element | null;
-      hovering.current = Boolean(
-        target?.closest?.('a, button, [data-magnetic], [role="button"]'),
-      );
+    const stop = () => {
+      running.current = false;
+      cancelAnimationFrame(raf.current);
     };
-    const onLeave = () => setVisible(false);
-
-    window.addEventListener('pointermove', onMove, { passive: true });
-    document.documentElement.addEventListener('mouseleave', onLeave);
 
     const tick = () => {
+      if (!running.current) return;
       const lerp = 0.18;
       ring.current.x += (pos.current.x - ring.current.x) * lerp;
       ring.current.y += (pos.current.y - ring.current.y) * lerp;
@@ -64,12 +58,44 @@ export default function MagneticCursor({ enabled = true }: MagneticCursorProps) 
       }
       raf.current = requestAnimationFrame(tick);
     };
-    raf.current = requestAnimationFrame(tick);
+
+    const start = () => {
+      if (running.current || document.hidden) return;
+      running.current = true;
+      raf.current = requestAnimationFrame(tick);
+    };
+
+    const onMove = (e: PointerEvent) => {
+      if (document.hidden) return;
+      pos.current = { x: e.clientX, y: e.clientY };
+      setVisible(true);
+      const target = e.target as Element | null;
+      hovering.current = Boolean(
+        target?.closest?.('a, button, [data-magnetic], [role="button"]'),
+      );
+      start();
+    };
+    const onLeave = () => {
+      setVisible(false);
+      stop();
+    };
+    const onVisibility = () => {
+      if (document.hidden) {
+        setVisible(false);
+        stop();
+      }
+    };
+
+    window.addEventListener('pointermove', onMove, { passive: true });
+    document.documentElement.addEventListener('mouseleave', onLeave);
+    document.addEventListener('visibilitychange', onVisibility);
+    start();
 
     return () => {
-      cancelAnimationFrame(raf.current);
+      stop();
       window.removeEventListener('pointermove', onMove);
       document.documentElement.removeEventListener('mouseleave', onLeave);
+      document.removeEventListener('visibilitychange', onVisibility);
     };
   }, [enabled, reduced, finePointer]);
 

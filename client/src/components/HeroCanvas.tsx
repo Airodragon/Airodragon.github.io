@@ -1,19 +1,23 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-const RED = new THREE.Color('#FF0000');
-const WHITE = new THREE.Color('#ffffff');
-
 interface HeroCanvasProps {
   className?: string;
+  /** When false, RAF loop pauses (tab hidden / hero off-screen). */
+  active?: boolean;
 }
 
 /**
  * Lightweight Three.js field: drifting red/white particles + soft mesh veil.
  * No video seeking — GPU particles only for atmosphere behind the portrait.
  */
-export default function HeroCanvas({ className }: HeroCanvasProps) {
+export default function HeroCanvas({ className, active = true }: HeroCanvasProps) {
   const mountRef = useRef<HTMLDivElement>(null);
+  const activeRef = useRef(active);
+
+  useEffect(() => {
+    activeRef.current = active;
+  }, [active]);
 
   useEffect(() => {
     const mount = mountRef.current;
@@ -21,6 +25,11 @@ export default function HeroCanvas({ className }: HeroCanvasProps) {
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const count = reduced ? 80 : 420;
+    const brand =
+      getComputedStyle(document.documentElement).getPropertyValue('--brand-red').trim() ||
+      '#FA0101';
+    const RED = new THREE.Color(brand);
+    const WHITE = new THREE.Color('#ffffff');
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
@@ -35,7 +44,6 @@ export default function HeroCanvas({ className }: HeroCanvasProps) {
     renderer.setClearColor(0x000000, 0);
     mount.appendChild(renderer.domElement);
 
-    // Particles
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
     const speeds = new Float32Array(count);
@@ -64,7 +72,6 @@ export default function HeroCanvas({ className }: HeroCanvasProps) {
     const points = new THREE.Points(geometry, material);
     scene.add(points);
 
-    // Soft flowing plane veil (subtle)
     const veilGeo = new THREE.PlaneGeometry(16, 10, 32, 24);
     const veilMat = new THREE.MeshBasicMaterial({
       color: RED,
@@ -96,10 +103,12 @@ export default function HeroCanvas({ className }: HeroCanvasProps) {
     window.addEventListener('resize', resize);
 
     let raf = 0;
+    let running = false;
     const clock = new THREE.Clock();
     const posAttr = geometry.getAttribute('position') as THREE.BufferAttribute;
 
     const tick = () => {
+      if (!running) return;
       const t = clock.getElapsedTime();
       pointer.x += (pointer.tx - pointer.x) * 0.06;
       pointer.y += (pointer.ty - pointer.y) * 0.06;
@@ -126,10 +135,36 @@ export default function HeroCanvas({ className }: HeroCanvasProps) {
       renderer.render(scene, camera);
       raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
+
+    const start = () => {
+      if (running || document.hidden || !activeRef.current) return;
+      running = true;
+      raf = requestAnimationFrame(tick);
+    };
+
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(raf);
+    };
+
+    const sync = () => {
+      if (document.hidden || !activeRef.current) stop();
+      else start();
+    };
+
+    document.addEventListener('visibilitychange', sync);
+    sync();
+
+    const poll = window.setInterval(() => {
+      const shouldRun = !document.hidden && activeRef.current;
+      if (shouldRun && !running) start();
+      if (!shouldRun && running) stop();
+    }, 250);
 
     return () => {
-      cancelAnimationFrame(raf);
+      stop();
+      window.clearInterval(poll);
+      document.removeEventListener('visibilitychange', sync);
       window.removeEventListener('pointermove', onMove);
       window.removeEventListener('resize', resize);
       geometry.dispose();

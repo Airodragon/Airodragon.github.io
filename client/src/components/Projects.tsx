@@ -1,7 +1,4 @@
-import { ArrowUpRight, BookOpen, Code2, Sparkles } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { ArrowUpRight, Code2 } from 'lucide-react';
 import SectionHeader from '@/components/SectionHeader';
 import { portfolioContent } from '@/lib/portfolio-content';
 
@@ -12,8 +9,8 @@ export default function Projects() {
     <section id="projects" className="section-shell">
       <div className="mx-auto max-w-7xl">
         <SectionHeader
-          eyebrow="Projects"
-          title="Selected work"
+          eyebrow="Work"
+          title="Selected projects"
           description="Live product references, engineering implementations, and practical architecture outcomes."
         />
 
@@ -24,102 +21,89 @@ export default function Projects() {
             const isFeatured = index === 0;
 
             return (
-              <Card
+              <article
                 key={`${project.title}-${project.company}`}
-                className={`surface-card ui-animate group relative flex h-full flex-col overflow-hidden border-border/70 ${
+                className={`editorial-panel group relative flex h-full flex-col border border-white/10 bg-white/[0.03] p-6 transition-colors hover:border-white/20 hover:bg-white/[0.05] sm:p-7 ${
                   isFeatured ? 'md:col-span-2 xl:col-span-2' : ''
                 }`}
                 data-testid={`card-project-${index}`}
               >
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-r from-primary/14 via-primary/7 to-transparent" />
-                <CardHeader className="flex flex-row items-center justify-between gap-3 space-y-0 pb-3">
-                  <div className="flex items-center gap-3">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary shadow-sm ring-1 ring-primary/20">
-                      <BookOpen className="h-5 w-5" />
+                <div className="mb-5 flex flex-wrap items-center gap-2">
+                  <span className="rounded-full border border-white/20 px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-foreground/80">
+                    {project.type}
+                  </span>
+                  {isFeatured && (
+                    <span className="rounded-full bg-[var(--brand-red)] px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-white">
+                      Featured
                     </span>
-                    <Badge variant="outline" className="rounded-full border-primary/40 bg-primary/10 text-primary">
-                      {project.type}
-                    </Badge>
-                    {isFeatured && (
-                      <Badge variant="outline" className="rounded-full border-indigo-400/45 bg-indigo-500/10 text-indigo-500">
-                        Featured
-                      </Badge>
-                    )}
-                  </div>
-                  {liveUrl ? (
-                    <Badge variant="outline" className="rounded-full border-emerald-400/45 bg-emerald-500/10 text-emerald-500">
-                      Live
-                    </Badge>
-                  ) : repoUrl ? (
-                    <Badge variant="outline" className="rounded-full border-primary/40 bg-primary/10 text-primary">
-                      Code
-                    </Badge>
-                  ) : (
-                    <Sparkles className="h-4 w-4 text-primary" />
                   )}
-                </CardHeader>
+                  {liveUrl && (
+                    <span className="rounded-full border border-white/25 px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-white/90">
+                      Live
+                    </span>
+                  )}
+                </div>
 
-                <CardContent className="flex flex-1 flex-col">
-                  <CardTitle
-                    className={`tracking-tight ${isFeatured ? 'text-2xl' : 'text-xl'}`}
-                    data-testid={`text-title-${index}`}
-                  >
-                    {project.title}
-                  </CardTitle>
-                  <p className="mt-2 text-sm font-medium text-primary" data-testid={`text-company-${index}`}>
-                    {project.company}
-                  </p>
-                  <p
-                    className={`mt-3 flex-grow leading-relaxed text-muted-foreground ${isFeatured ? 'text-base' : 'text-sm sm:text-[0.95rem]'}`}
-                    data-testid={`text-description-${index}`}
-                  >
-                    {project.description}
-                  </p>
+                <h3
+                  className={`font-semibold tracking-tight text-foreground ${isFeatured ? 'text-2xl sm:text-3xl' : 'text-xl'}`}
+                  data-testid={`text-title-${index}`}
+                >
+                  {project.title}
+                </h3>
+                <p
+                  className="mt-2 text-sm font-semibold text-[var(--brand-red)]"
+                  data-testid={`text-company-${index}`}
+                >
+                  {project.company}
+                </p>
+                <p
+                  className={`mt-3 flex-grow leading-relaxed text-muted-foreground ${isFeatured ? 'text-base' : 'text-sm sm:text-[0.95rem]'}`}
+                  data-testid={`text-description-${index}`}
+                >
+                  {project.description}
+                </p>
 
-                  <div className="mt-5 flex flex-wrap gap-2 border-t border-border/70 pt-4">
-                    {project.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-full border border-border/70 bg-background/70 px-2.5 py-1 text-xs font-medium text-muted-foreground"
-                        data-testid={`text-tech-${tech.toLowerCase().replace(/\s+/g, '-')}`}
-                      >
-                        #{tech}
-                      </span>
-                    ))}
-                  </div>
+                <div className="mt-5 flex flex-wrap gap-2 border-t border-white/10 pt-4">
+                  {project.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-full border border-white/12 px-2.5 py-1 text-xs font-medium text-muted-foreground"
+                      data-testid={`text-tech-${tech.toLowerCase().replace(/\s+/g, '-')}`}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
 
-                  <div className="mt-4 flex flex-wrap items-center gap-2">
-                    {liveUrl && (
-                      <Button
-                        asChild
-                        size="sm"
-                        className="gap-1.5"
-                        data-testid={`link-project-live-${index}`}
-                      >
-                        <a href={liveUrl} target="_blank" rel="noopener noreferrer">
-                          {project.liveLabel ?? 'Live Preview'}
-                          <ArrowUpRight className="h-3.5 w-3.5" />
-                        </a>
-                      </Button>
-                    )}
-
-                    {repoUrl && (
-                      <Button
-                        asChild
-                        size="sm"
-                        variant="outline"
-                        className="gap-1.5"
-                        data-testid={`link-project-repo-${index}`}
-                      >
-                        <a href={repoUrl} target="_blank" rel="noopener noreferrer">
-                          Source
-                          <Code2 className="h-3.5 w-3.5" />
-                        </a>
-                      </Button>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
+                <div className="mt-5 flex flex-wrap items-center gap-3">
+                  {liveUrl && (
+                    <a
+                      href={liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-magnetic
+                      data-testid={`link-project-live-${index}`}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-semibold text-neutral-900 transition-transform hover:scale-[1.03]"
+                    >
+                      {project.liveLabel ?? 'Live Preview'}
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+                  {repoUrl && (
+                    <a
+                      href={repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-magnetic
+                      data-testid={`link-project-repo-${index}`}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-white/30 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                    >
+                      Source
+                      <Code2 className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+                </div>
+              </article>
             );
           })}
         </div>

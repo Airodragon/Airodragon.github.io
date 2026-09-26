@@ -75,7 +75,7 @@ function PortfolioSections() {
       <main className="relative z-10">
         <Hero onNavigate={scrollToSection} />
         <div className="relative overflow-hidden bg-background">
-          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_rgba(227,28,19,0.14),_transparent_55%)]" />
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_rgb(250_1_1_/_0.12),_transparent_55%)]" />
           <Reveal>
             <About />
           </Reveal>

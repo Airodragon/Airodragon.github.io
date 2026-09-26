@@ -24,16 +24,27 @@ export default function SectionHeader({
       )}
     >
       <div className={cn('max-w-3xl', centered && 'mx-auto')}>
-        <div className={cn('inline-flex items-center gap-2', centered && 'justify-center')}>
-          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/90 sm:text-sm">{eyebrow}</p>
+        <div className={cn('inline-flex items-center gap-2.5', centered && 'justify-center')}>
+          <span className="h-px w-6 bg-[var(--brand-red)]" />
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[var(--brand-red)] sm:text-xs">
+            {eyebrow}
+          </p>
         </div>
-        <h2 className="heading-display mt-2 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+        <h2 className="heading-display mt-3 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
           {title}
         </h2>
-        {description && <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">{description}</p>}
+        {description && (
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+            {description}
+          </p>
+        )}
       </div>
-      <div className={cn('hidden h-px flex-1 bg-gradient-to-r from-border/80 to-transparent md:block', centered && 'md:hidden')} />
+      <div
+        className={cn(
+          'mb-2 hidden h-px flex-1 bg-gradient-to-r from-white/15 to-transparent md:block',
+          centered && 'md:hidden',
+        )}
+      />
     </div>
   );
 }

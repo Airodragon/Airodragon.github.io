@@ -11,8 +11,9 @@ interface NavigationProps {
 }
 
 const HERO_NAV: { id: NavSectionId; label: string }[] = [
-  { id: 'projects', label: 'Work' },
   { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'projects', label: 'Work' },
   { id: 'contact', label: 'Contact' },
 ];
 
@@ -63,13 +64,13 @@ export default function Navigation({
                   data-magnetic
                   data-testid={`link-nav-${item.id}`}
                   className={cn(
-                    'rounded-full px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.2em] transition-colors',
+                    'rounded-full px-3.5 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] transition-colors lg:px-4 lg:tracking-[0.2em]',
                     onHero
                       ? active
                         ? 'bg-white text-neutral-900'
                         : 'text-white/85 hover:bg-white/12 hover:text-white'
                       : active
-                        ? 'bg-[#FF0000] text-white'
+                        ? 'bg-[var(--brand-red)] text-white'
                         : 'text-white/70 hover:bg-white/10 hover:text-white',
                   )}
                 >
@@ -144,7 +145,7 @@ export default function Navigation({
           <div
             className={cn(
               'h-full transition-[width] duration-300 ease-out',
-              onHero ? 'bg-white/70' : 'bg-[#FF0000]',
+              onHero ? 'bg-white/70' : 'bg-[var(--brand-red)]',
             )}
             style={{ width: `${scrollProgress}%` }}
           />
